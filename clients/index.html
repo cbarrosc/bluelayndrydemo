@@ -7,13 +7,14 @@
 <meta name="description" content="Demo interactiva de Blue Laundry: servicio de lavandería con retiro y entrega a domicilio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --blue-50: #eff6ff;
   --blue-100: #dbeafe;
   --blue-200: #bfdbfe;
+  --blue-300: #93c5fd;
   --blue-400: #60a5fa;
   --blue-500: #3b82f6;
   --blue-600: #2563eb;
@@ -22,6 +23,13 @@
   --blue-900: #1e3a8a;
   --emerald-500: #10b981;
   --emerald-600: #059669;
+  --teal-50: #f0fdfa;
+  --teal-100: #ccfbf1;
+  --teal-200: #99f6e4;
+  --teal-400: #2dd4bf;
+  --teal-500: #14b8a6;
+  --teal-600: #0d9488;
+  --teal-700: #0f766e;
   --amber-500: #f59e0b;
   --red-500: #ef4444;
   --red-50: #fef2f2;
@@ -36,7 +44,7 @@
   --gray-800: #1e293b;
   --gray-900: #0f172a;
   --white: #ffffff;
-  --font: 'Inter', system-ui, -apple-system, sans-serif;
+  --font: 'Figtree', system-ui, -apple-system, sans-serif;
   --max-w: 1200px;
   --header-h: 72px;
   --radius: 12px;
@@ -116,7 +124,7 @@ nav .btn-nav:hover, nav .btn-nav:focus-visible { background: var(--blue-700); }
 /* Hero */
 .hero {
   padding: 100px 0 80px;
-  background: linear-gradient(135deg, var(--blue-50) 0%, var(--white) 100%);
+  background: linear-gradient(135deg, var(--blue-50) 0%, var(--teal-50) 45%, var(--white) 100%);
   overflow: hidden;
 }
 .hero .container {
@@ -125,6 +133,7 @@ nav .btn-nav:hover, nav .btn-nav:focus-visible { background: var(--blue-700); }
 .hero-content h1 {
   font-size: 3.25rem; font-weight: 800; line-height: 1.15;
   color: var(--gray-900); letter-spacing: -.03em;
+  text-wrap: balance;
 }
 .hero-content h1 span { color: var(--blue-600); }
 .hero-content p {
@@ -155,7 +164,8 @@ nav .btn-nav:hover, nav .btn-nav:focus-visible { background: var(--blue-700); }
   border: 2px solid var(--blue-200);
 }
 .btn-secondary:hover, .btn-secondary:focus-visible {
-  border-color: var(--blue-400); background: var(--blue-50);
+  border-color: var(--teal-400, var(--teal-500)); background: var(--teal-50);
+  color: var(--teal-700);
 }
 .hero-visual {
   display: flex; align-items: center; justify-content: center;
@@ -167,7 +177,7 @@ nav .btn-nav:hover, nav .btn-nav:focus-visible { background: var(--blue-700); }
 }
 .hero-circle {
   width: 100%; height: 100%;
-  background: linear-gradient(135deg, var(--blue-100), var(--blue-200));
+  background: linear-gradient(135deg, var(--blue-200) 0%, var(--blue-300) 100%);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   position: relative;
@@ -187,7 +197,7 @@ nav .btn-nav:hover, nav .btn-nav:focus-visible { background: var(--blue-700); }
 .floating-badge:nth-child(3) { bottom: 10%; left: -8%; animation-delay: -1.5s; }
 .badge-dot {
   width: 8px; height: 8px; border-radius: 50%;
-  background: var(--emerald-500);
+  background: var(--teal-500);
 }
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -201,9 +211,11 @@ section { padding: 88px 0; }
   font-size: .85rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
   color: var(--blue-600); margin-bottom: 12px;
 }
+.delivery .section-label { color: var(--teal-700); }
 .section-title {
   font-size: 2.25rem; font-weight: 700; color: var(--gray-900);
   letter-spacing: -.02em; line-height: 1.25;
+  text-wrap: balance;
 }
 .section-desc {
   margin-top: 16px; font-size: 1.1rem; color: var(--gray-500);
@@ -225,7 +237,8 @@ section { padding: 88px 0; }
 .how-step:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
 .how-number {
   width: 48px; height: 48px; margin: 0 auto 16px;
-  background: var(--blue-100); color: var(--blue-700);
+  background: linear-gradient(135deg, var(--blue-100) 0%, var(--teal-100) 100%);
+  color: var(--teal-700);
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
   font-weight: 700; font-size: 1.25rem;
 }
@@ -247,8 +260,8 @@ section { padding: 88px 0; }
   transform: translateY(-2px);
 }
 .service-card.selected {
-  border-color: var(--blue-500); background: var(--blue-50);
-  box-shadow: 0 0 0 4px rgba(59,130,246,.15);
+  border-color: var(--teal-500); background: var(--teal-50);
+  box-shadow: 0 0 0 4px rgba(20,184,166,.12);
 }
 .service-card.selected .check-mark {
   opacity: 1; transform: scale(1);
@@ -256,7 +269,7 @@ section { padding: 88px 0; }
 .check-mark {
   position: absolute; top: 12px; right: 12px;
   width: 24px; height: 24px;
-  background: var(--blue-500); color: white;
+  background: var(--teal-500); color: white;
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
   font-size: .8rem; font-weight: 700;
   opacity: 0; transform: scale(.5);
@@ -268,7 +281,7 @@ section { padding: 88px 0; }
 .service-card h3 { font-size: 1.05rem; font-weight: 600; color: var(--gray-800); }
 .service-card p { font-size: .85rem; color: var(--gray-500); margin-top: 6px; line-height: 1.5; }
 .service-meta { margin-top: 16px; display: flex; justify-content: space-between; align-items: center; }
-.service-price { font-weight: 700; font-size: 1.2rem; color: var(--blue-700); }
+.service-price { font-weight: 700; font-size: 1.2rem; color: var(--teal-700); }
 .service-price small { font-weight: 400; font-size: .8rem; color: var(--gray-500); }
 .service-time { font-size: .8rem; color: var(--gray-500); }
 
@@ -285,7 +298,8 @@ section { padding: 88px 0; }
 .benefit-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
 .benefit-icon {
   width: 48px; height: 48px; border-radius: 12px;
-  background: var(--blue-100); color: var(--blue-600);
+  background: linear-gradient(135deg, var(--blue-100) 0%, var(--teal-100) 100%);
+  color: var(--teal-700);
   display: flex; align-items: center; justify-content: center;
   font-size: 1.4rem; margin-bottom: 16px;
 }
@@ -356,6 +370,80 @@ section { padding: 88px 0; }
 .faq-item.open .faq-answer-inner { padding-bottom: 18px; }
 .faq-answer p { font-size: .95rem; color: var(--gray-500); line-height: 1.7; }
 
+/* Delivery schedule */
+.delivery { background: linear-gradient(180deg, var(--white) 0%, var(--teal-50) 100%); }
+.delivery-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 16px;
+}
+.delivery-day {
+  background: var(--white);
+  border: 1px solid var(--teal-200);
+  border-radius: var(--radius);
+  padding: 22px 16px;
+  text-align: center;
+  transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+}
+.delivery-day:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--teal-500); }
+.delivery-day.no-service {
+  background: var(--gray-100);
+  border-color: var(--gray-200);
+  opacity: .85;
+}
+.delivery-day-name {
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--teal-700);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: 12px;
+}
+.delivery-day.no-service .delivery-day-name { color: var(--gray-500); }
+.delivery-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: .75rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.delivery-day:not(.no-service) .delivery-badge {
+  background: var(--teal-100);
+  color: var(--teal-700);
+}
+.delivery-day.no-service .delivery-badge {
+  background: var(--gray-200);
+  color: var(--gray-500);
+}
+.delivery-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.delivery-places {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.delivery-place {
+  font-size: .85rem;
+  color: var(--gray-700);
+  line-height: 1.4;
+}
+.delivery-day.no-service .delivery-place { color: var(--gray-500); }
+.delivery-note {
+  max-width: 640px;
+  margin: 28px auto 0;
+  text-align: center;
+  font-size: .9rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+}
+
 /* Footer */
 footer {
   background: var(--gray-900); color: var(--gray-300);
@@ -378,7 +466,10 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
   background: var(--gray-700); color: var(--gray-300);
   display: flex; align-items: center; justify-content: center;
   transition: all var(--transition);
-  font-size: .9rem;
+}
+.footer-social a svg {
+  width: 18px;
+  height: 18px;
 }
 .footer-social a:hover, .footer-social a:focus-visible {
   background: var(--blue-600); color: var(--white);
@@ -506,7 +597,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
 .wizard-step-label { display: none; }
 .wizard-step.active .wizard-step-label,
 .wizard-step.completed .wizard-step-label { display: inline; }
-.wizard-title { font-size: 1.75rem; font-weight: 700; color: var(--gray-900); margin-top: 20px; }
+.wizard-title { font-size: 1.75rem; font-weight: 700; color: var(--gray-900); margin-top: 20px; text-wrap: balance; }
 .wizard-desc { font-size: 1rem; color: var(--gray-500); margin-top: 8px; }
 
 /* Wizard step panels */
@@ -651,6 +742,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
   .hero-content p { margin-left: auto; margin-right: auto; }
   .hero-actions { justify-content: center; }
   .services-grid, .how-grid, .benefits-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  .delivery-grid { grid-template-columns: repeat(4, 1fr); }
   footer .container { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
@@ -670,6 +762,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
   nav.open a:not(.btn-nav):nth-of-type(3) { top: calc(var(--header-h) + 106px); }
   nav.open a:not(.btn-nav):nth-of-type(4) { top: calc(var(--header-h) + 159px); }
   .services-grid, .how-grid, .benefits-grid, .testimonials-grid { grid-template-columns: 1fr; }
+  .delivery-grid { grid-template-columns: repeat(2, 1fr); }
   .service-options { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   section { padding: 60px 0; }
@@ -701,6 +794,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
     <nav id="main-nav">
       <a href="#how">Cómo funciona</a>
       <a href="#services">Servicios</a>
+      <a href="#delivery">Calendario de delivery</a>
       <a href="#benefits">Beneficios</a>
       <a href="#faq">FAQ</a>
       <a href="#" class="btn-nav" id="cta-header">Solicitar lavandería</a>
@@ -774,6 +868,19 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
         <p class="section-desc">Precios transparentes, sin sorpresas. Elige lo que necesitas.</p>
       </div>
       <div class="services-grid" id="services-grid"></div>
+    </div>
+  </section>
+
+  <!-- Delivery schedule -->
+  <section class="delivery" id="delivery">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Cobertura</span>
+        <h2 class="section-title">Calendario de entregas en Chicureo</h2>
+        <p class="section-desc">Consulta los días y sectores de Chicureo donde retiramos y entregamos tu ropa. Planeamos las rutas para llegar puntual a cada zona.</p>
+      </div>
+      <div class="delivery-grid" id="delivery-grid"></div>
+      <p class="delivery-note">Los horarios de retiro en Chicureo son de lunes a sábado. Los domingos no realizamos rutas, pero puedes agendar tu pedido con anticipación para el lunes siguiente. <span class="demo-note">* Cobertura demostrativa</span></p>
     </div>
   </section>
 
@@ -854,15 +961,19 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
       </div>
       <p>Lavandería a domicilio con retiro y entrega sin que tengas que moverte. Cuidamos tu ropa como si fuera nuestra.</p>
       <div class="footer-social">
-        <a href="#" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
-        <a href="#" aria-label="Facebook" target="_blank" rel="noopener">FB</a>
-        <a href="#" aria-label="WhatsApp" target="_blank" rel="noopener">WA</a>
+        <a href="#" aria-label="Instagram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="#" aria-label="WhatsApp" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        </a>
       </div>
     </div>
     <div>
       <h4>Navegación</h4>
       <p><a href="#hero">Inicio</a></p>
       <p><a href="#services">Servicios</a></p>
+      <p><a href="#delivery">Calendario de delivery</a></p>
       <p><a href="#how">Cómo funciona</a></p>
       <p><a href="#faq">Preguntas frecuentes</a></p>
     </div>
@@ -1145,6 +1256,15 @@ const DATA = {
     { q: '¿Qué prendas no reciben?', a: 'No recibimos prendas de cuero, gamuza, alfombras grandes, edredones voluminosos ni artículos que requieran limpieza en seco profesional. Si tienes dudas sobre una prenda, consúltanos antes de agendar.' },
     { q: '¿Puedo modificar el horario?', a: 'Sí, puedes modificar el horario hasta 2 horas antes del retiro contactándonos por WhatsApp o teléfono. También puedes reagendar la entrega si surge un imprevisto.' },
     { q: '¿Qué ocurre si una prenda requiere cuidado especial?', a: 'Nuestro equipo revisa cada prenda al recibirla. Si identificamos que necesita un tratamiento especial, te contactamos para confirmar antes de proceder. La transparencia es nuestra prioridad.' }
+  ],
+  deliverySchedule: [
+    { day: 'Lunes', active: true, places: ['Hacienda Chicureo', 'Chicureo Centro'] },
+    { day: 'Martes', active: true, places: ['Piedra Roja', 'Santa Elena'] },
+    { day: 'Miércoles', active: true, places: ['Los Ingleses', 'El Cóndor'] },
+    { day: 'Jueves', active: true, places: ['Hacienda Chicureo', 'Piedra Roja'] },
+    { day: 'Viernes', active: true, places: ['Chicureo Centro', 'Santa Elena'] },
+    { day: 'Sábado', active: true, places: ['Todo Chicureo'] },
+    { day: 'Domingo', active: false, places: ['Sin rutas programadas'] }
   ]
 };
 
@@ -1220,6 +1340,23 @@ function renderFAQs() {
       btn.setAttribute('aria-expanded', isOpen);
     });
   });
+}
+
+// Render delivery schedule
+function renderDeliverySchedule() {
+  const grid = document.getElementById('delivery-grid');
+  grid.innerHTML = DATA.deliverySchedule.map(d => `
+    <div class="delivery-day ${d.active ? '' : 'no-service'}">
+      <div class="delivery-day-name">${d.day}</div>
+      <div class="delivery-badge">
+        <span class="delivery-badge-dot" aria-hidden="true"></span>
+        ${d.active ? 'Retiro y entrega' : 'Sin servicio'}
+      </div>
+      <div class="delivery-places">
+        ${d.places.map(p => `<span class="delivery-place">${p}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
 }
 
 // Render wizard step 1 services
@@ -1529,6 +1666,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderServices();
   renderTestimonials();
   renderFAQs();
+  renderDeliverySchedule();
 
   // CTA buttons
   document.querySelectorAll('#cta-hero, #cta-header').forEach(btn => btn.addEventListener('click', openWizard));
