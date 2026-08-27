@@ -48,7 +48,13 @@ ul{list-style:none}
 .sidebar-label{
   padding:16px 20px 6px;font-size:.7rem;font-weight:600;text-transform:uppercase;
   letter-spacing:.08em;color:var(--blue-400);opacity:.6;
+  display:flex;align-items:center;gap:4px;cursor:pointer;user-select:none;
 }
+.sidebar-label:hover{opacity:1}
+.sidebar-label .arrow{font-size:.5rem;transition:transform 200ms ease;margin-left:auto}
+.section-group.collapsed .arrow{transform:rotate(-90deg)}
+.section-items{overflow:hidden;max-height:500px;transition:max-height 250ms ease}
+.section-group.collapsed .section-items{max-height:0}
 .sidebar-item{
   display:flex;align-items:center;gap:12px;padding:10px 20px;
   font-size:.875rem;font-weight:500;color:var(--blue-200);cursor:pointer;
@@ -58,6 +64,18 @@ ul{list-style:none}
 .sidebar-item.active{
   background:rgba(255,255,255,.1);color:var(--white);border-right-color:var(--blue-500);
 }
+.sidebar-cta{
+  background:linear-gradient(135deg,var(--blue-500),var(--blue-600));
+  color:var(--white);border-radius:var(--radius);border-right:0;
+  justify-content:center;padding:13px;font-weight:600;font-size:.9rem;
+  box-shadow:0 2px 10px rgba(37,99,235,.3);letter-spacing:.01em;
+  position:relative;overflow:hidden;
+}
+.sidebar-cta:hover{background:var(--blue-600)!important;color:var(--white)!important;box-shadow:0 4px 16px rgba(37,99,235,.4)}
+.sidebar-cta:active{transform:scale(.97)}
+.sidebar-cta.active{background:var(--blue-700);box-shadow:none}
+.sidebar-cta .icon{font-size:1.1rem}
+.sidebar-divider{height:1px;background:rgba(255,255,255,.08);margin:6px 14px 2px}
 .sidebar-item .icon{width:20px;text-align:center;font-size:1rem;flex-shrink:0}
 .sidebar-footer{
   padding:16px 20px;border-top:1px solid rgba(255,255,255,.08);
@@ -379,20 +397,39 @@ tbody tr.late{background:var(--red-50)}
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-logo"><span class="logo-icon">BL</span><span>Blue Laundry</span></div>
   <nav class="sidebar-nav">
-    <div class="sidebar-label">Operaciones</div>
-    <div class="sidebar-item active" data-screen="dashboard"><span class="icon">📊</span><span>Dashboard</span></div>
-    <div class="sidebar-item" data-screen="orders"><span class="icon">📋</span><span>Órdenes</span></div>
-    <div class="sidebar-item" data-screen="order-new"><span class="icon">➕</span><span>Nueva orden</span></div>
-    <div class="sidebar-label">Gestión</div>
-    <div class="sidebar-item" data-screen="customers"><span class="icon">👥</span><span>Clientes</span></div>
-    <div class="sidebar-item" data-screen="services"><span class="icon">🧺</span><span>Servicios</span></div>
-    <div class="sidebar-item" data-screen="promotions"><span class="icon">🏷️</span><span>Promociones</span></div>
-    <div class="sidebar-label">Operaciones</div>
-    <div class="sidebar-item" data-screen="cash"><span class="icon">💰</span><span>Caja</span></div>
-    <div class="sidebar-item" data-screen="deliveries"><span class="icon">🚚</span><span>Retiros</span></div>
-    <div class="sidebar-item" data-screen="reports"><span class="icon">📈</span><span>Reportes</span></div>
-    <div class="sidebar-label">Sistema</div>
-    <div class="sidebar-item" data-screen="settings"><span class="icon">⚙️</span><span>Configuración</span></div>
+    <div style="padding:10px 14px 8px">
+      <div class="sidebar-item sidebar-cta" data-screen="order-new"><span class="icon">➕</span><span>Nueva orden</span></div>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="section-group">
+      <div class="sidebar-label" data-section="ops-1">Operaciones <span class="arrow">▼</span></div>
+      <div class="section-items">
+        <div class="sidebar-item active" data-screen="dashboard"><span class="icon">📊</span><span>Dashboard</span></div>
+        <div class="sidebar-item" data-screen="orders"><span class="icon">📋</span><span>Órdenes</span></div>
+      </div>
+    </div>
+    <div class="section-group">
+      <div class="sidebar-label" data-section="gestion">Gestión <span class="arrow">▼</span></div>
+      <div class="section-items">
+        <div class="sidebar-item" data-screen="customers"><span class="icon">👥</span><span>Clientes</span></div>
+        <div class="sidebar-item" data-screen="services"><span class="icon">🧺</span><span>Servicios</span></div>
+        <div class="sidebar-item" data-screen="promotions"><span class="icon">🏷️</span><span>Promociones</span></div>
+      </div>
+    </div>
+    <div class="section-group">
+      <div class="sidebar-label" data-section="ops-2">Operaciones <span class="arrow">▼</span></div>
+      <div class="section-items">
+        <div class="sidebar-item" data-screen="cash"><span class="icon">💰</span><span>Caja</span></div>
+        <div class="sidebar-item" data-screen="deliveries"><span class="icon">🚚</span><span>Retiros</span></div>
+        <div class="sidebar-item" data-screen="reports"><span class="icon">📈</span><span>Reportes</span></div>
+      </div>
+    </div>
+    <div class="section-group">
+      <div class="sidebar-label" data-section="sistema">Sistema <span class="arrow">▼</span></div>
+      <div class="section-items">
+        <div class="sidebar-item" data-screen="settings"><span class="icon">⚙️</span><span>Configuración</span></div>
+      </div>
+    </div>
   </nav>
   <div class="sidebar-footer">
     <div class="avatar">CM</div>
@@ -583,6 +620,7 @@ cashState.currentAmount = cashState.openingAmount
   - cashState.movements.filter(m=>m.type==='egreso').reduce((s,m)=>s+m.amount,0);
 
 const Store = {
+  sectionKey:'bl_mgmt_sections',
   save(){
     try{
       localStorage.setItem('bl_mgmt',JSON.stringify({
@@ -602,6 +640,19 @@ const Store = {
         if(d.services){DATA.services.length=0;DATA.services.push(...d.services)}
         if(d.garmentTypes){DATA.garmentTypes.length=0;DATA.garmentTypes.push(...d.garmentTypes)}
       }
+    }catch(e){}
+  },
+  getSectionState(section){
+    try{
+      const d=JSON.parse(localStorage.getItem(this.sectionKey));
+      return d?.[section]
+    }catch(e){return null}
+  },
+  saveSectionState(section,state){
+    try{
+      const d=JSON.parse(localStorage.getItem(this.sectionKey))||{};
+      d[section]=state;
+      localStorage.setItem(this.sectionKey,JSON.stringify(d))
     }catch(e){}
   }
 };
@@ -1481,6 +1532,19 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.sidebar-item').forEach(item => {
     item.addEventListener('click', () => {
       if(item.dataset.screen) renderScreen(item.dataset.screen);
+    });
+  });
+
+  // Section collapse
+  document.querySelectorAll('.sidebar-label').forEach(label => {
+    const section = label.dataset.section;
+    const group = label.parentElement;
+    const saved = Store.getSectionState?.(section);
+    if(saved === 'collapsed') group.classList.add('collapsed');
+    label.addEventListener('click', e => {
+      e.stopPropagation();
+      group.classList.toggle('collapsed');
+      Store.saveSectionState?.(section, group.classList.contains('collapsed') ? 'collapsed' : 'open');
     });
   });
 
