@@ -820,7 +820,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
       <a href="#delivery">Calendario de delivery</a>
       <a href="#benefits">Beneficios</a>
       <a href="#faq">FAQ</a>
-      <a href="#" class="btn-nav" id="cta-header">Solicitar lavandería</a>
+      <a href="https://web.whatsapp.com/send?phone=56941990328&amp;text=Hola%2C%20quiero%20solicitar%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Blue%20Laundry." class="btn-nav" id="cta-header" target="_blank" rel="noopener noreferrer">Solicitar lavandería</a>
     </nav>
   </div>
 </header>
@@ -834,19 +834,19 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
           <article class="hero-slide is-active" data-slide="0" role="group" aria-roledescription="slide" aria-label="1 de 3" aria-hidden="false">
             <h1>Tu ropa limpia, <span>sin salir de casa</span></h1>
             <p>Retiro, lavado, secado, doblado y entrega en tu domicilio. El cuidado que tus prendas merecen, con la comodidad que tú necesitas.</p>
-            <div class="hero-actions"><button class="btn btn-primary" id="cta-hero">Solicitar lavandería</button><a href="#how" class="btn btn-secondary">Conoce el proceso</a></div>
+            <div class="hero-actions"><a href="https://web.whatsapp.com/send?phone=56941990328&amp;text=Hola%2C%20quiero%20solicitar%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Blue%20Laundry." class="btn btn-primary" id="cta-hero" target="_blank" rel="noopener noreferrer">Solicitar lavandería</a><a href="#how" class="btn btn-secondary">Conoce el proceso</a></div>
           </article>
           <article class="hero-slide" data-slide="1" role="group" aria-roledescription="slide" aria-label="2 de 3" aria-hidden="true">
             <span class="hero-offer">Oferta demo · código BIENVENIDA20</span>
             <h1>20% de descuento en tu primer pedido</h1>
             <p>Prueba el retiro y la entrega a domicilio con una promoción ficticia para este prototipo.</p>
-            <div class="hero-actions"><button class="btn btn-primary" data-cta-booking="true">Usar oferta demo</button><a href="#services" class="btn btn-secondary">Ver servicios</a></div>
+            <div class="hero-actions"><a href="https://web.whatsapp.com/send?phone=56941990328&amp;text=Hola%2C%20quiero%20solicitar%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Blue%20Laundry." class="btn btn-primary" data-cta-booking="true" target="_blank" rel="noopener noreferrer">Usar oferta demo</a><a href="#services" class="btn btn-secondary">Ver servicios</a></div>
           </article>
           <article class="hero-slide" data-slide="2" role="group" aria-roledescription="slide" aria-label="3 de 3" aria-hidden="true">
             <span class="hero-offer">Oferta demo · retiro sin costo</span>
             <h1>Más tiempo para ti, <span>menos ropa pendiente</span></h1>
             <p>Agenda un retiro ficticio y deja que Blue Laundry se encargue del resto.</p>
-            <div class="hero-actions"><button class="btn btn-primary" data-cta-booking="true">Agendar retiro</button><a href="#how" class="btn btn-secondary">Conoce el proceso</a></div>
+            <div class="hero-actions"><a href="https://web.whatsapp.com/send?phone=56941990328&amp;text=Hola%2C%20quiero%20solicitar%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Blue%20Laundry." class="btn btn-primary" data-cta-booking="true" target="_blank" rel="noopener noreferrer">Agendar retiro</a><a href="#how" class="btn btn-secondary">Conoce el proceso</a></div>
           </article>
         </div>
         <div class="hero-carousel-controls" role="group" aria-label="Controles de ofertas">
@@ -1715,9 +1715,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderFAQs();
   renderDeliverySchedule();
 
-  // CTA buttons
-  document.querySelectorAll('#cta-hero, #cta-header').forEach(btn => btn.addEventListener('click', openWizard));
-
   const heroSlides = [...document.querySelectorAll('.hero-slide')];
   const heroIndicators = [...document.querySelectorAll('.hero-slide-indicator')];
   const heroPause = document.getElementById('hero-pause');
@@ -1770,7 +1767,6 @@ document.addEventListener('DOMContentLoaded', () => {
     startHeroTimer();
   });
   heroReducedMotion.addEventListener('change', startHeroTimer);
-  document.querySelectorAll('[data-cta-booking="true"]').forEach((button) => button.addEventListener('click', openWizard));
   startHeroTimer();
 
   // Mobile menu toggle
