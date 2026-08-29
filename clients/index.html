@@ -1721,7 +1721,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroSlides = [...document.querySelectorAll('.hero-slide')];
   const heroIndicators = [...document.querySelectorAll('.hero-slide-indicator')];
   const heroPause = document.getElementById('hero-pause');
-  const heroCarousel = document.getElementById('hero-carousel');
+  const heroContent = document.querySelector('.hero-content');
   let heroIndex = 0;
   let heroTimer;
   let heroPaused = false;
@@ -1760,12 +1760,12 @@ document.addEventListener('DOMContentLoaded', () => {
     heroPause.setAttribute('aria-pressed', String(heroPaused));
     startHeroTimer();
   });
-  heroCarousel.addEventListener('focusin', () => {
+  heroContent.addEventListener('focusin', () => {
     heroFocused = true;
     stopHeroTimer();
   });
-  heroCarousel.addEventListener('focusout', (event) => {
-    if (event.relatedTarget && heroCarousel.contains(event.relatedTarget)) return;
+  heroContent.addEventListener('focusout', (event) => {
+    if (event.relatedTarget && heroContent.contains(event.relatedTarget)) return;
     heroFocused = false;
     startHeroTimer();
   });
