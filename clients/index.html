@@ -1717,6 +1717,47 @@ document.addEventListener('DOMContentLoaded', () => {
   // CTA buttons
   document.querySelectorAll('#cta-hero, #cta-header').forEach(btn => btn.addEventListener('click', openWizard));
 
+  const heroSlides = [...document.querySelectorAll('.hero-slide')];
+  const heroIndicators = [...document.querySelectorAll('.hero-slide-indicator')];
+  const heroPause = document.getElementById('hero-pause');
+  let heroIndex = 0;
+  let heroTimer;
+  let heroPaused = false;
+
+  function renderHeroSlide(index) {
+    heroIndex = (index + heroSlides.length) % heroSlides.length;
+    heroSlides.forEach((slide, i) => {
+      const active = i === heroIndex;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', String(!active));
+    });
+    heroIndicators.forEach((indicator, i) => {
+      const active = i === heroIndex;
+      indicator.classList.toggle('is-active', active);
+      if (active) indicator.setAttribute('aria-current', 'true');
+      else indicator.removeAttribute('aria-current');
+    });
+  }
+
+  function stopHeroTimer() { clearInterval(heroTimer); }
+  function startHeroTimer() {
+    stopHeroTimer();
+    if (!heroPaused) heroTimer = setInterval(() => renderHeroSlide(heroIndex + 1), 4000);
+  }
+  function moveHeroSlide(index) { renderHeroSlide(index); startHeroTimer(); }
+
+  document.getElementById('hero-prev').addEventListener('click', () => moveHeroSlide(heroIndex - 1));
+  document.getElementById('hero-next').addEventListener('click', () => moveHeroSlide(heroIndex + 1));
+  heroIndicators.forEach((indicator) => indicator.addEventListener('click', () => moveHeroSlide(Number(indicator.dataset.slideTo))));
+  heroPause.addEventListener('click', () => {
+    heroPaused = !heroPaused;
+    heroPause.textContent = heroPaused ? '▶' : 'Ⅱ';
+    heroPause.setAttribute('aria-label', heroPaused ? 'Reanudar ofertas' : 'Pausar ofertas');
+    startHeroTimer();
+  });
+  document.querySelectorAll('[data-cta-booking="true"]').forEach((button) => button.addEventListener('click', openWizard));
+  startHeroTimer();
+
   // Mobile menu toggle
   const menuToggle = document.querySelector('.menu-toggle');
   const nav = document.getElementById('main-nav');
