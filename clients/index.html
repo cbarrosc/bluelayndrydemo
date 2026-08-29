@@ -1723,6 +1723,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let heroIndex = 0;
   let heroTimer;
   let heroPaused = false;
+  const heroReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   function renderHeroSlide(index) {
     heroIndex = (index + heroSlides.length) % heroSlides.length;
@@ -1742,7 +1743,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function stopHeroTimer() { clearInterval(heroTimer); }
   function startHeroTimer() {
     stopHeroTimer();
-    if (!heroPaused) heroTimer = setInterval(() => renderHeroSlide(heroIndex + 1), 4000);
+    if (!heroPaused && !heroReducedMotion.matches) heroTimer = setInterval(() => renderHeroSlide(heroIndex + 1), 4000);
   }
   function moveHeroSlide(index) { renderHeroSlide(index); startHeroTimer(); }
 
@@ -1755,6 +1756,7 @@ document.addEventListener('DOMContentLoaded', () => {
     heroPause.setAttribute('aria-label', heroPaused ? 'Reanudar ofertas' : 'Pausar ofertas');
     startHeroTimer();
   });
+  heroReducedMotion.addEventListener('change', startHeroTimer);
   document.querySelectorAll('[data-cta-booking="true"]').forEach((button) => button.addEventListener('click', openWizard));
   startHeroTimer();
 
