@@ -99,7 +99,7 @@ nav a {
 nav a:hover, nav a:focus-visible { color: var(--blue-600); }
 nav .btn-nav {
   font-size: .875rem; font-weight: 600;
-  padding: 8px 20px;
+  min-height: 44px; padding: 10px 20px;
   border-radius: var(--radius-sm);
   background: var(--blue-600);
   color: var(--white) !important;
@@ -109,7 +109,7 @@ nav .btn-nav:hover, nav .btn-nav:focus-visible { background: var(--blue-700); }
 .menu-toggle {
   display: none; flex-direction: column; gap: 5px;
   background: none; border: none; cursor: pointer;
-  padding: 4px; z-index: 101;
+  width: 44px; height: 44px; padding: 4px; z-index: 101;
 }
 .menu-toggle span {
   display: block; width: 24px; height: 2px;
@@ -155,7 +155,9 @@ nav .btn-nav:hover, nav .btn-nav:focus-visible { background: var(--blue-700); }
 .hero-slide-indicator::before { content: ''; width: 8px; height: 8px; border-radius: 999px; background: var(--blue-200); }
 .hero-slide-indicator.is-active::before { width: 22px; background: var(--blue-600); }
 .demo-note { display: block; margin-top: 12px; color: var(--gray-500); font-size: .8rem; }
-@media (prefers-reduced-motion: reduce) { .hero-slide { transition: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide, .hero-circle, .floating-badge, .modal { transition: none; animation: none; }
+}
 .hero-actions { display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap; }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
@@ -457,7 +459,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
 .footer-brand p { color: var(--gray-400); max-width: 280px; }
 .footer-social { display: flex; gap: 12px; margin-top: 20px; }
 .footer-social a {
-  width: 36px; height: 36px; border-radius: 8px;
+  width: 44px; height: 44px; border-radius: 8px;
   background: var(--gray-700); color: var(--gray-300);
   display: flex; align-items: center; justify-content: center;
   transition: all var(--transition);
@@ -511,7 +513,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
   font-size: 1.25rem; font-weight: 700; color: var(--gray-900);
 }
 .modal-close {
-  width: 36px; height: 36px; border-radius: 8px;
+  width: 44px; height: 44px; border-radius: 8px;
   background: none; border: none; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   color: var(--gray-400); font-size: 1.25rem;
@@ -545,7 +547,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
   padding: 16px 28px; border-top: 1px solid var(--gray-200);
   display: flex; justify-content: flex-end; flex-shrink: 0;
 }
-.modal-footer .btn { font-size: .9rem; padding: 10px 24px; }
+.modal-footer .btn { min-height: 44px; font-size: .9rem; padding: 12px 24px; }
 .modal-date {
   font-size: .8rem; color: var(--gray-400); margin-top: 4px;
   margin-bottom: 16px; display: block;
@@ -632,13 +634,13 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
             <span class="hero-offer">Oferta demo · código BIENVENIDA20</span>
             <h1>20% de descuento en tu primera solicitud demo</h1>
             <p>Explora una promoción ficticia y conversa por WhatsApp para conocer cómo podría coordinarse el servicio.</p>
-            <div class="hero-actions"><a href="https://web.whatsapp.com/send?phone=56941990328&amp;text=Hola%2C%20quiero%20solicitar%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Blue%20Laundry." class="btn btn-primary" data-cta-booking="true" target="_blank" rel="noopener noreferrer">Usar oferta demo</a><a href="#services" class="btn btn-secondary">Ver servicios</a></div>
+            <div class="hero-actions"><a href="https://web.whatsapp.com/send?phone=56941990328&amp;text=Hola%2C%20quiero%20solicitar%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Blue%20Laundry." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Usar oferta demo</a><a href="#services" class="btn btn-secondary">Ver servicios</a></div>
           </article>
           <article class="hero-slide" data-slide="2" role="group" aria-roledescription="slide" aria-label="3 de 3" aria-hidden="true">
             <span class="hero-offer">Oferta demo · retiro de referencia</span>
             <h1>Más tiempo para ti, <span>menos ropa pendiente</span></h1>
             <p>Revisa una idea de servicio y coordina manualmente los detalles por WhatsApp.</p>
-            <div class="hero-actions"><a href="https://web.whatsapp.com/send?phone=56941990328&amp;text=Hola%2C%20quiero%20solicitar%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Blue%20Laundry." class="btn btn-primary" data-cta-booking="true" target="_blank" rel="noopener noreferrer">Conversar por WhatsApp</a><a href="#how" class="btn btn-secondary">Conoce el proceso</a></div>
+            <div class="hero-actions"><a href="https://web.whatsapp.com/send?phone=56941990328&amp;text=Hola%2C%20quiero%20solicitar%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Blue%20Laundry." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Conversar por WhatsApp</a><a href="#how" class="btn btn-secondary">Conoce el proceso</a></div>
           </article>
         </div>
         <div class="hero-carousel-controls" role="group" aria-label="Controles de ofertas">
@@ -740,7 +742,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
         <div class="benefit-card">
           <div class="benefit-icon">✨</div>
           <h3>Cuidado especializado</h3>
-          <p>Cada prenda recibe el tratamiento que necesita. Lavado delicado, planchado y más.</p>
+          <p>La demo ilustra opciones de cuidado como lavado delicado y planchado; no representa una capacidad real.</p>
         </div>
         <div class="benefit-card">
           <div class="benefit-icon">💰</div>
@@ -760,7 +762,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
         <div class="benefit-card">
           <div class="benefit-icon">🤝</div>
           <h3>Atención personalizada</h3>
-          <p>¿Tienes una prenda especial? Habla con nosotros y te daremos el mejor tratamiento.</p>
+          <p>La demo ilustra una conversación sobre prendas especiales; no ofrece atención ni tratamientos reales.</p>
         </div>
       </div>
     </div>
@@ -1033,15 +1035,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const termsTrigger = document.getElementById('footer-terms');
   const termsClose = document.getElementById('terms-close');
   const termsAccept = document.getElementById('terms-accept');
+  const backgroundContent = [document.querySelector('header'), document.querySelector('main'), document.querySelector('footer')];
   const termsFocusable = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  let backgroundState = [];
   const openTerms = () => {
     termsModal.classList.add('open');
     document.body.style.overflow = 'hidden';
     termsClose.focus();
+    backgroundState = backgroundContent.map(element => ({
+      element,
+      inert: element.inert,
+      ariaHidden: element.getAttribute('aria-hidden')
+    }));
+    backgroundState.forEach(({ element }) => {
+      element.inert = true;
+      element.setAttribute('aria-hidden', 'true');
+    });
   };
   const closeTerms = () => {
     termsModal.classList.remove('open');
     document.body.style.overflow = '';
+    backgroundState.forEach(({ element, inert, ariaHidden }) => {
+      element.inert = inert;
+      if (ariaHidden === null) element.removeAttribute('aria-hidden');
+      else element.setAttribute('aria-hidden', ariaHidden);
+    });
+    backgroundState = [];
     termsTrigger.focus();
   };
   termsTrigger.addEventListener('click', e => { e.preventDefault(); openTerms(); });
