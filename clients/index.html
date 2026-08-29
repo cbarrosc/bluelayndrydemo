@@ -579,6 +579,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
   nav.open a:not(.btn-nav):nth-of-type(2) { top: calc(var(--header-h) + 53px); }
   nav.open a:not(.btn-nav):nth-of-type(3) { top: calc(var(--header-h) + 106px); }
   nav.open a:not(.btn-nav):nth-of-type(4) { top: calc(var(--header-h) + 159px); }
+  nav.open a:not(.btn-nav):nth-of-type(5) { top: calc(var(--header-h) + 212px); }
   .services-grid, .how-grid, .benefits-grid, .testimonials-grid { grid-template-columns: 1fr; }
   .delivery-grid { grid-template-columns: repeat(2, 1fr); }
   section { padding: 60px 0; }
@@ -853,8 +854,8 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
       <p>Los precios publicados son exclusivamente referenciales y pueden estar sujetos a variaciones. El precio final será informado al cliente antes de la confirmación de la solicitud. Todos los valores se expresan en pesos chilenos (CLP), incluido IVA.</p>
 
       <h3>4. Proceso de solicitud</h3>
-      <p>Para solicitar un servicio, el cliente deberá completar el formulario dispuesto en la Plataforma, proporcionando información veraz y actualizada. La confirmación de la solicitud estará sujeta a la verificación de cobertura geográfica y disponibilidad horaria.</p>
-      <p>Una vez confirmada la solicitud, el cliente recibirá un número de orden único que le permitirá realizar el seguimiento de su pedido. Blue Laundry se reserva el derecho de rechazar solicitudes que no cumplan con los requisitos establecidos.</p>
+      <p>Para solicitar un servicio, el cliente debe contactarnos por WhatsApp y proporcionar información veraz y actualizada. La coordinación estará sujeta a la verificación de cobertura geográfica y disponibilidad horaria.</p>
+      <p>Este sitio es un demo: la atención y coordinación de solicitudes se realizan por WhatsApp, sin generar un número de orden ni contratar servicios desde la Plataforma.</p>
 
       <h3>5. Retiro y entrega</h3>
       <p>El cliente se obliga a entregar las prendas al conductor de Blue Laundry en la dirección, fecha y franja horaria seleccionadas. Las prendas deben entregarse limpias, secas y separadas por tipo de lavado cuando corresponda.</p>
@@ -1078,13 +1079,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Terms modal
   const termsModal = document.getElementById('terms-modal');
-  const openTerms = () => { termsModal.classList.add('open'); document.body.style.overflow = 'hidden'; };
-  const closeTerms = () => { termsModal.classList.remove('open'); document.body.style.overflow = ''; };
-  document.getElementById('footer-terms').addEventListener('click', e => { e.preventDefault(); openTerms(); });
-  document.getElementById('terms-close').addEventListener('click', closeTerms);
-  document.getElementById('terms-accept').addEventListener('click', closeTerms);
+  const termsTrigger = document.getElementById('footer-terms');
+  const termsClose = document.getElementById('terms-close');
+  const termsAccept = document.getElementById('terms-accept');
+  const termsFocusable = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  const openTerms = () => {
+    termsModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    termsClose.focus();
+  };
+  const closeTerms = () => {
+    termsModal.classList.remove('open');
+    document.body.style.overflow = '';
+    termsTrigger.focus();
+  };
+  termsTrigger.addEventListener('click', e => { e.preventDefault(); openTerms(); });
+  termsClose.addEventListener('click', closeTerms);
+  termsAccept.addEventListener('click', closeTerms);
   termsModal.addEventListener('click', e => { if (e.target === termsModal) closeTerms(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && termsModal.classList.contains('open')) closeTerms(); });
+  document.addEventListener('keydown', e => {
+    if (!termsModal.classList.contains('open')) return;
+    if (e.key === 'Escape') { closeTerms(); return; }
+    if (e.key !== 'Tab') return;
+    const focusable = [...termsModal.querySelectorAll(termsFocusable)];
+    if (!focusable.length) { e.preventDefault(); return; }
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
 });
 </script>
 </body>
