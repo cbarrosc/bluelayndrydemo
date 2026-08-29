@@ -151,12 +151,13 @@ nav .btn-nav:hover, nav .btn-nav:focus-visible { background: var(--blue-700); }
 .hero-slide p { margin-top: 20px; font-size: 1.125rem; color: var(--gray-500); max-width: 500px; line-height: 1.7; }
 .hero-offer { display: inline-flex; margin-top: 18px; padding: 7px 12px; border-radius: 999px; background: var(--teal-100); color: var(--teal-700); font-size: .82rem; font-weight: 700; }
 .hero-carousel-controls { display: flex; align-items: center; gap: 10px; margin-top: 24px; }
-.hero-carousel-controls button { border: 1px solid var(--blue-200); background: var(--white); color: var(--blue-700); border-radius: 999px; min-width: 36px; min-height: 36px; cursor: pointer; font: inherit; }
+.hero-carousel-controls button { border: 1px solid var(--blue-200); background: var(--white); color: var(--blue-700); border-radius: 999px; min-width: 44px; min-height: 44px; cursor: pointer; font: inherit; }
 .hero-carousel-controls button:focus-visible { outline: 3px solid var(--blue-400); outline-offset: 2px; }
 .hero-carousel-controls button:hover { background: var(--blue-50); }
-.hero-slide-indicators { display: flex; gap: 6px; }
-.hero-slide-indicator { width: 8px; height: 8px; padding: 0; border: 0; background: var(--blue-200); }
-.hero-slide-indicator.is-active { width: 22px; background: var(--blue-600); }
+.hero-slide-indicators { display: flex; gap: 0; }
+.hero-slide-indicator { width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 0; border: 0; background: transparent; position: relative; display: inline-flex; align-items: center; justify-content: center; }
+.hero-slide-indicator::before { content: ''; width: 8px; height: 8px; border-radius: 999px; background: var(--blue-200); }
+.hero-slide-indicator.is-active::before { width: 22px; background: var(--blue-600); }
 .demo-note { display: block; margin-top: 12px; color: var(--gray-500); font-size: .8rem; }
 @media (prefers-reduced-motion: reduce) { .hero-slide { transition: none; } }
 .hero-actions { display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap; }
@@ -829,28 +830,28 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
   <section class="hero" id="hero">
     <div class="container">
       <div class="hero-content">
-        <div class="hero-copy-rotator" id="hero-carousel" aria-live="polite">
-          <article class="hero-slide is-active" data-slide="0">
+        <div class="hero-copy-rotator" id="hero-carousel" role="region" aria-roledescription="carousel" aria-label="Ofertas destacadas" aria-live="polite">
+          <article class="hero-slide is-active" data-slide="0" role="group" aria-roledescription="slide" aria-label="1 de 3" aria-hidden="false">
             <h1>Tu ropa limpia, <span>sin salir de casa</span></h1>
             <p>Retiro, lavado, secado, doblado y entrega en tu domicilio. El cuidado que tus prendas merecen, con la comodidad que tú necesitas.</p>
             <div class="hero-actions"><button class="btn btn-primary" id="cta-hero">Solicitar lavandería</button><a href="#how" class="btn btn-secondary">Conoce el proceso</a></div>
           </article>
-          <article class="hero-slide" data-slide="1" aria-hidden="true">
+          <article class="hero-slide" data-slide="1" role="group" aria-roledescription="slide" aria-label="2 de 3" aria-hidden="true">
             <span class="hero-offer">Oferta demo · código BIENVENIDA20</span>
-            <h1>Tu primer lavado, <span>con 20% de descuento</span></h1>
+            <h1>20% de descuento en tu primer pedido</h1>
             <p>Prueba el retiro y la entrega a domicilio con una promoción ficticia para este prototipo.</p>
             <div class="hero-actions"><button class="btn btn-primary" data-cta-booking="true">Usar oferta demo</button><a href="#services" class="btn btn-secondary">Ver servicios</a></div>
           </article>
-          <article class="hero-slide" data-slide="2" aria-hidden="true">
+          <article class="hero-slide" data-slide="2" role="group" aria-roledescription="slide" aria-label="3 de 3" aria-hidden="true">
             <span class="hero-offer">Oferta demo · retiro sin costo</span>
             <h1>Más tiempo para ti, <span>menos ropa pendiente</span></h1>
             <p>Agenda un retiro ficticio y deja que Blue Laundry se encargue del resto.</p>
             <div class="hero-actions"><button class="btn btn-primary" data-cta-booking="true">Agendar retiro</button><a href="#how" class="btn btn-secondary">Conoce el proceso</a></div>
           </article>
         </div>
-        <div class="hero-carousel-controls" aria-label="Controles de ofertas">
+        <div class="hero-carousel-controls" role="group" aria-label="Controles de ofertas">
           <button type="button" id="hero-prev" aria-label="Oferta anterior">←</button>
-          <div class="hero-slide-indicators" aria-label="Seleccionar oferta">
+          <div class="hero-slide-indicators" role="group" aria-label="Seleccionar oferta">
             <button type="button" class="hero-slide-indicator is-active" data-slide-to="0" aria-label="Ver oferta 1" aria-current="true"></button>
             <button type="button" class="hero-slide-indicator" data-slide-to="1" aria-label="Ver oferta 2"></button>
             <button type="button" class="hero-slide-indicator" data-slide-to="2" aria-label="Ver oferta 3"></button>
