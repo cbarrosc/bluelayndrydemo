@@ -857,7 +857,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
             <button type="button" class="hero-slide-indicator" data-slide-to="2" aria-label="Ver oferta 3"></button>
           </div>
           <button type="button" id="hero-next" aria-label="Oferta siguiente">→</button>
-          <button type="button" id="hero-pause" aria-label="Pausar ofertas">Ⅱ</button>
+          <button type="button" id="hero-pause" aria-label="Pausar ofertas" aria-pressed="false">Ⅱ</button>
         </div>
         <small class="demo-note">Contenido demostrativo: ofertas y códigos ficticios.</small>
       </div>
@@ -1721,9 +1721,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroSlides = [...document.querySelectorAll('.hero-slide')];
   const heroIndicators = [...document.querySelectorAll('.hero-slide-indicator')];
   const heroPause = document.getElementById('hero-pause');
+  const heroCarousel = document.getElementById('hero-carousel');
   let heroIndex = 0;
   let heroTimer;
   let heroPaused = false;
+  let heroFocused = false;
   const heroReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   function renderHeroSlide(index) {
@@ -1744,7 +1746,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function stopHeroTimer() { clearInterval(heroTimer); }
   function startHeroTimer() {
     stopHeroTimer();
-    if (!heroPaused && !heroReducedMotion.matches) heroTimer = setInterval(() => renderHeroSlide(heroIndex + 1), 4000);
+    if (!heroPaused && !heroFocused && !heroReducedMotion.matches) heroTimer = setInterval(() => renderHeroSlide(heroIndex + 1), 4000);
   }
   function moveHeroSlide(index) { renderHeroSlide(index); startHeroTimer(); }
 
@@ -1755,6 +1757,16 @@ document.addEventListener('DOMContentLoaded', () => {
     heroPaused = !heroPaused;
     heroPause.textContent = heroPaused ? '▶' : 'Ⅱ';
     heroPause.setAttribute('aria-label', heroPaused ? 'Reanudar ofertas' : 'Pausar ofertas');
+    heroPause.setAttribute('aria-pressed', String(heroPaused));
+    startHeroTimer();
+  });
+  heroCarousel.addEventListener('focusin', () => {
+    heroFocused = true;
+    stopHeroTimer();
+  });
+  heroCarousel.addEventListener('focusout', (event) => {
+    if (event.relatedTarget && heroCarousel.contains(event.relatedTarget)) return;
+    heroFocused = false;
     startHeroTimer();
   });
   heroReducedMotion.addEventListener('change', startHeroTimer);
