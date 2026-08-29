@@ -81,7 +81,7 @@ header .container {
   height: 100%;
 }
 .logo {
-  display: flex; align-items: center; gap: 10px;
+  display: inline-flex; align-items: center; min-height: 44px; gap: 10px;
   font-weight: 700; font-size: 1.25rem; color: var(--blue-700);
 }
 .logo-icon {
@@ -93,6 +93,7 @@ header .container {
 }
 nav { display: flex; align-items: center; gap: 32px; }
 nav a {
+  display: inline-flex; align-items: center; min-height: 44px;
   font-size: .9rem; font-weight: 500; color: var(--gray-600);
   transition: color var(--transition);
 }
@@ -454,6 +455,7 @@ footer h4 {
   letter-spacing: .05em; color: var(--gray-400); margin-bottom: 16px;
 }
 footer p, footer a { font-size: .9rem; line-height: 1.8; }
+footer a { display: inline-flex; align-items: center; min-height: 44px; }
 footer a:hover, footer a:focus-visible { color: var(--blue-400); }
 .footer-brand .logo { color: var(--white); margin-bottom: 12px; }
 .footer-brand p { color: var(--gray-400); max-width: 280px; }
@@ -572,7 +574,8 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
   nav a:not(.btn-nav) { display: none; }
   .menu-toggle { display: flex; }
   nav.open a:not(.btn-nav) {
-    display: block; position: fixed; left: 0; right: 0;
+    display: inline-flex; align-items: center; min-height: 44px;
+    position: fixed; left: 0; right: 0;
     background: var(--white); padding: 16px 24px;
     border-bottom: 1px solid var(--gray-200);
     font-size: 1.05rem;
