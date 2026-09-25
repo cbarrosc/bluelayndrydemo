@@ -369,7 +369,7 @@ section { padding: 88px 0; }
 .delivery { background: linear-gradient(180deg, var(--white) 0%, var(--teal-50) 100%); }
 .delivery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 16px;
 }
 .delivery-day {
@@ -558,7 +558,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
   .hero-content p { margin-left: auto; margin-right: auto; }
   .hero-actions { justify-content: center; }
   .services-grid, .how-grid, .benefits-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
-  .delivery-grid { grid-template-columns: repeat(3, 1fr); }
+  .delivery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   footer .container { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
@@ -582,13 +582,14 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
   nav.open a:not(.btn-nav):nth-of-type(4) { top: calc(var(--header-h) + 159px); }
   nav.open a:not(.btn-nav):nth-of-type(5) { top: calc(var(--header-h) + 212px); }
   .services-grid, .how-grid, .benefits-grid, .testimonials-grid { grid-template-columns: 1fr; }
-  .delivery-grid { grid-template-columns: 1fr; }
+  .delivery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   section { padding: 60px 0; }
   .section-title { font-size: 1.75rem; }
   footer .container { grid-template-columns: 1fr; gap: 32px; }
   .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
 }
 @media (max-width: 480px) {
+  .delivery-grid { grid-template-columns: 1fr; }
   header .container { padding-left: max(12px, env(safe-area-inset-left)); padding-right: max(12px, env(safe-area-inset-right)); gap: 4px; }
   .logo { min-width: 0; gap: 6px; font-size: .95rem; white-space: nowrap; }
   .logo-icon { width: 32px; height: 32px; flex-shrink: 0; font-size: .95rem; }

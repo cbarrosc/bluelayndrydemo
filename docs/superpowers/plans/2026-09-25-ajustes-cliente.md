@@ -190,3 +190,4 @@ El plan queda cumplido cuando la landing refleja el contenido acordado, los enla
 - Aún pendiente de validación comercial: base de cobro para «Lavado y planchado desde $15.000» y «Planchado desde $12.000».
 - Commit: `7cc886a` (`feat(clients): update pickup landing details`).
 - PR abierto contra `master`: https://github.com/cbarrosc/bluelayndrydemo/pull/1.
+- Ajuste solicitado después de abrir el PR: calendario en seis columnas en escritorio; tres en tabletas, dos en móvil ancho y una en móvil estrecho.
