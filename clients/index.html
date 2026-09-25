@@ -275,7 +275,7 @@ section { padding: 88px 0; }
 }
 .service-card h3 { font-size: 1.05rem; font-weight: 600; color: var(--gray-800); }
 .service-card p { font-size: .85rem; color: var(--gray-500); margin-top: 6px; line-height: 1.5; }
-.service-meta { margin-top: 16px; display: flex; justify-content: space-between; align-items: center; }
+.service-meta { margin-top: 16px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
 .service-price { font-weight: 700; font-size: 1.2rem; color: var(--teal-700); }
 .service-price small { font-weight: 400; font-size: .8rem; color: var(--gray-500); }
 .service-time { font-size: .8rem; color: var(--gray-500); }
@@ -369,7 +369,7 @@ section { padding: 88px 0; }
 .delivery { background: linear-gradient(180deg, var(--white) 0%, var(--teal-50) 100%); }
 .delivery-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 .delivery-day {
@@ -381,10 +381,9 @@ section { padding: 88px 0; }
   transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
 }
 .delivery-day:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--teal-500); }
-.delivery-day.no-service {
+.delivery-day.local-service {
   background: var(--gray-100);
   border-color: var(--gray-200);
-  opacity: .85;
 }
 .delivery-day-name {
   font-size: .9rem;
@@ -394,7 +393,7 @@ section { padding: 88px 0; }
   letter-spacing: .04em;
   margin-bottom: 12px;
 }
-.delivery-day.no-service .delivery-day-name { color: var(--gray-500); }
+.delivery-day.local-service .delivery-day-name { color: var(--gray-600); }
 .delivery-badge {
   display: inline-flex;
   align-items: center;
@@ -405,13 +404,13 @@ section { padding: 88px 0; }
   font-weight: 600;
   margin-bottom: 14px;
 }
-.delivery-day:not(.no-service) .delivery-badge {
+.delivery-day:not(.local-service) .delivery-badge {
   background: var(--teal-100);
   color: var(--teal-700);
 }
-.delivery-day.no-service .delivery-badge {
+.delivery-day.local-service .delivery-badge {
   background: var(--gray-200);
-  color: var(--gray-500);
+  color: var(--gray-700);
 }
 .delivery-badge-dot {
   width: 6px;
@@ -429,7 +428,7 @@ section { padding: 88px 0; }
   color: var(--gray-700);
   line-height: 1.4;
 }
-.delivery-day.no-service .delivery-place { color: var(--gray-500); }
+.delivery-day.local-service .delivery-place { color: var(--gray-700); }
 .delivery-note {
   max-width: 640px;
   margin: 28px auto 0;
@@ -559,7 +558,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
   .hero-content p { margin-left: auto; margin-right: auto; }
   .hero-actions { justify-content: center; }
   .services-grid, .how-grid, .benefits-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
-  .delivery-grid { grid-template-columns: repeat(4, 1fr); }
+  .delivery-grid { grid-template-columns: repeat(3, 1fr); }
   footer .container { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
@@ -583,7 +582,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
   nav.open a:not(.btn-nav):nth-of-type(4) { top: calc(var(--header-h) + 159px); }
   nav.open a:not(.btn-nav):nth-of-type(5) { top: calc(var(--header-h) + 212px); }
   .services-grid, .how-grid, .benefits-grid, .testimonials-grid { grid-template-columns: 1fr; }
-  .delivery-grid { grid-template-columns: repeat(2, 1fr); }
+  .delivery-grid { grid-template-columns: 1fr; }
   section { padding: 60px 0; }
   .section-title { font-size: 1.75rem; }
   footer .container { grid-template-columns: 1fr; gap: 32px; }
@@ -630,10 +629,10 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
     <nav id="main-nav">
       <a href="#how">Cómo funciona</a>
       <a href="#services">Servicios</a>
-      <a href="#delivery">Calendario de delivery</a>
+      <a href="#delivery">Calendario de retiros</a>
       <a href="#benefits">Beneficios</a>
       <a href="#faq">FAQ</a>
-      <a href="https://web.whatsapp.com/send?phone=56941990328&amp;text=Hola%2C%20quiero%20solicitar%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Blue%20Laundry." class="btn-nav" id="cta-header" target="_blank" rel="noopener noreferrer">Solicitar lavandería</a>
+      <a href="https://wa.me/56941990328?text=Hola%2C%20quiero%20coordinar%20un%20retiro%20con%20Blue%20Laundry" class="btn-nav" id="cta-header" target="_blank" rel="noopener noreferrer">Agenda retiro</a>
     </nav>
   </div>
 </header>
@@ -643,36 +642,36 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
   <section class="hero" id="hero">
     <div class="container">
       <div class="hero-content">
-        <div class="hero-copy-rotator" id="hero-carousel" role="region" aria-roledescription="carousel" aria-label="Ofertas destacadas" aria-live="polite">
+        <div class="hero-copy-rotator" id="hero-carousel" role="region" aria-roledescription="carousel" aria-label="Información destacada" aria-live="polite">
           <article class="hero-slide is-active" data-slide="0" role="group" aria-roledescription="slide" aria-label="1 de 3" aria-hidden="false">
-            <h1>Conoce una forma simple de <span>coordinar tu lavandería</span></h1>
-            <p>Explora esta landing demostrativa y conversa por WhatsApp sobre una eventual atención de retiro, lavado y entrega a domicilio.</p>
-            <div class="hero-actions"><a href="https://web.whatsapp.com/send?phone=56941990328&amp;text=Hola%2C%20quiero%20solicitar%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Blue%20Laundry." class="btn btn-primary" id="cta-hero" target="_blank" rel="noopener noreferrer">Solicitar lavandería</a><a href="#how" class="btn btn-secondary">Conoce el proceso</a></div>
+            <h1>Tu ropa limpia, <span>tu tiempo libre</span></h1>
+            <p>Lavamos, secamos, planchamos y doblamos. Coordina tu retiro por WhatsApp.</p>
+            <div class="hero-actions"><a href="https://wa.me/56941990328?text=Hola%2C%20quiero%20coordinar%20un%20retiro%20con%20Blue%20Laundry" class="btn btn-primary" id="cta-hero" target="_blank" rel="noopener noreferrer">Agenda retiro</a><a href="#how" class="btn btn-secondary">Cómo funciona</a></div>
           </article>
           <article class="hero-slide" data-slide="1" role="group" aria-roledescription="slide" aria-label="2 de 3" aria-hidden="true">
-            <span class="hero-offer">Oferta demo · código BIENVENIDA20</span>
-            <h1>20% de descuento en tu primera solicitud demo</h1>
-            <p>Explora una promoción ficticia y conversa por WhatsApp para conocer cómo podría coordinarse el servicio.</p>
-            <div class="hero-actions"><a href="https://web.whatsapp.com/send?phone=56941990328&amp;text=Hola%2C%20quiero%20solicitar%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Blue%20Laundry." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Usar oferta demo</a><a href="#services" class="btn btn-secondary">Ver servicios</a></div>
+            <span class="hero-offer">Promoción de bienvenida</span>
+            <h1>15% de descuento en tu primer pedido</h1>
+            <p>No necesitas un código. El pago se realiza presencialmente.</p>
+            <div class="hero-actions"><a href="https://wa.me/56941990328?text=Hola%2C%20quiero%20coordinar%20un%20retiro%20con%20Blue%20Laundry" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Agenda retiro</a><a href="#services" class="btn btn-secondary">Ver servicios</a></div>
           </article>
           <article class="hero-slide" data-slide="2" role="group" aria-roledescription="slide" aria-label="3 de 3" aria-hidden="true">
-            <span class="hero-offer">Oferta demo · retiro de referencia</span>
-            <h1>Más tiempo para ti, <span>menos ropa pendiente</span></h1>
-            <p>Revisa una idea de servicio y coordina manualmente los detalles por WhatsApp.</p>
-            <div class="hero-actions"><a href="https://web.whatsapp.com/send?phone=56941990328&amp;text=Hola%2C%20quiero%20solicitar%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Blue%20Laundry." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Conversar por WhatsApp</a><a href="#how" class="btn btn-secondary">Conoce el proceso</a></div>
+            <span class="hero-offer">Retiros programados</span>
+            <h1>Agenda tu retiro</h1>
+            <p>Revisa cómo funciona, consulta nuestro calendario y envíanos un WhatsApp para coordinar.</p>
+            <div class="hero-actions"><a href="https://wa.me/56941990328?text=Hola%2C%20quiero%20coordinar%20un%20retiro%20con%20Blue%20Laundry" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Agenda retiro</a><a href="#how" class="btn btn-secondary">Cómo funciona</a><a href="#delivery" class="btn btn-secondary">Consultar calendario</a></div>
           </article>
         </div>
         <div class="hero-carousel-controls" role="group" aria-label="Controles de ofertas">
-          <button type="button" id="hero-prev" aria-label="Oferta anterior">←</button>
-          <div class="hero-slide-indicators" role="group" aria-label="Seleccionar oferta">
-            <button type="button" class="hero-slide-indicator is-active" data-slide-to="0" aria-label="Ver oferta 1" aria-current="true"></button>
-            <button type="button" class="hero-slide-indicator" data-slide-to="1" aria-label="Ver oferta 2"></button>
-            <button type="button" class="hero-slide-indicator" data-slide-to="2" aria-label="Ver oferta 3"></button>
+          <button type="button" id="hero-prev" aria-label="Mensaje anterior">←</button>
+          <div class="hero-slide-indicators" role="group" aria-label="Seleccionar mensaje">
+            <button type="button" class="hero-slide-indicator is-active" data-slide-to="0" aria-label="Ver mensaje 1" aria-current="true"></button>
+            <button type="button" class="hero-slide-indicator" data-slide-to="1" aria-label="Ver mensaje 2"></button>
+            <button type="button" class="hero-slide-indicator" data-slide-to="2" aria-label="Ver mensaje 3"></button>
           </div>
-          <button type="button" id="hero-next" aria-label="Oferta siguiente">→</button>
-          <button type="button" id="hero-pause" aria-label="Pausar ofertas" aria-pressed="false">Ⅱ</button>
+          <button type="button" id="hero-next" aria-label="Mensaje siguiente">→</button>
+          <button type="button" id="hero-pause" aria-label="Pausar mensajes" aria-pressed="false">Ⅱ</button>
         </div>
-        <small class="demo-note">Contenido demostrativo: ofertas y códigos ficticios.</small>
+        <small class="demo-note">Contenido demostrativo</small>
       </div>
       <div class="hero-visual">
         <div class="hero-illustration">
@@ -692,28 +691,28 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
       <div class="section-header">
         <span class="section-label">Proceso</span>
         <h2 class="section-title">Cómo funciona</h2>
-        <p class="section-desc">Una referencia visual de cómo podría coordinarse una atención por WhatsApp.</p>
+        <p class="section-desc">Lavamos, secamos, planchamos y doblamos. Coordina el retiro por WhatsApp y consulta los plazos según la demanda.</p>
       </div>
       <div class="how-grid">
         <div class="how-step">
           <div class="how-number">1</div>
-          <h3>Conversa por WhatsApp</h3>
-          <p>Comparte qué necesitas y revisa con atención manual las opciones disponibles.</p>
+          <h3>Consulta el calendario</h3>
+          <p>Revisa los días de retiro programados para tu sector.</p>
         </div>
         <div class="how-step">
           <div class="how-number">2</div>
-          <h3>Coordina los detalles</h3>
-          <p>Si el servicio existiera, allí se confirmarían cobertura, prendas y horarios.</p>
+          <h3>Agenda tu retiro</h3>
+          <p>Envíanos un WhatsApp para coordinar los detalles. Retiros de martes a viernes hasta las 16:00.</p>
         </div>
         <div class="how-step">
           <div class="how-number">3</div>
-          <h3>Conoce la propuesta</h3>
-          <p>La demo presenta una idea de lavado, secado y doblado con cuidado de las prendas.</p>
+          <h3>Cuidamos tus prendas</h3>
+          <p>Lavamos, secamos, planchamos y doblamos según el servicio que elijas.</p>
         </div>
         <div class="how-step">
           <div class="how-number">4</div>
-          <h3>Define el siguiente paso</h3>
-          <p>Cualquier atención se coordinaría manualmente por WhatsApp, fuera de esta demo.</p>
+          <h3>Coordinamos la entrega</h3>
+          <p>Entrega desde 48 horas, según demanda. Confirma los detalles por WhatsApp.</p>
         </div>
       </div>
     </div>
@@ -725,7 +724,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
       <div class="section-header">
         <span class="section-label">Servicios</span>
         <h2 class="section-title">Nuestros servicios</h2>
-        <p class="section-desc">Valores ficticios para explorar la propuesta y conversar por WhatsApp.</p>
+        <p class="section-desc">Precios de referencia. El pago es presencial; consulta por WhatsApp el valor final de los servicios con precio desde.</p>
       </div>
       <div class="services-grid" id="services-grid"></div>
     </div>
@@ -736,11 +735,11 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
     <div class="container">
       <div class="section-header">
         <span class="section-label">Cobertura</span>
-        <h2 class="section-title">Calendario de entregas en Chicureo</h2>
-        <p class="section-desc">Consulta una referencia ficticia de días y sectores de Chicureo para conversar por WhatsApp.</p>
+        <h2 class="section-title">Calendario de retiros en Chicureo</h2>
+        <p class="section-desc">Revisa los sectores con retiros programados y consulta disponibilidad por WhatsApp.</p>
       </div>
       <div class="delivery-grid" id="delivery-grid"></div>
-      <p class="delivery-note">El calendario es ilustrativo: cobertura, horarios y cualquier retiro se revisarían manualmente por WhatsApp. <span class="demo-note">* Cobertura demostrativa</span></p>
+      <p class="delivery-note">Retiros de martes a viernes hasta las 16:00. Si no tenemos un retiro programado, podemos coordinar excepcionalmente un retiro en otro sector. <a href="https://wa.me/56941990328?text=Hola%2C%20quiero%20consultar%20disponibilidad%20para%20un%20retiro%20con%20Blue%20Laundry" target="_blank" rel="noopener noreferrer">Consulta disponibilidad por WhatsApp</a>. La coordinación está sujeta a confirmación.</p>
     </div>
   </section>
 
@@ -756,27 +755,27 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
         <div class="benefit-card">
           <div class="benefit-icon">🚚</div>
           <h3>Retiro y entrega a domicilio</h3>
-          <p>La demo muestra una propuesta a domicilio; cualquier detalle se coordinaría manualmente por WhatsApp.</p>
+          <p>Consulta el calendario y confirma por WhatsApp la disponibilidad de retiro en tu sector.</p>
         </div>
         <div class="benefit-card">
           <div class="benefit-icon">✨</div>
           <h3>Cuidado especializado</h3>
-          <p>La demo ilustra opciones de cuidado como lavado delicado y planchado; no representa una capacidad real.</p>
+          <p>Lavamos, secamos, planchamos y doblamos según el servicio que elijas.</p>
         </div>
         <div class="benefit-card">
           <div class="benefit-icon">💰</div>
           <h3>Precios transparentes</h3>
-          <p>Los valores son ficticios y sirven solo como referencia para conversar sobre la propuesta.</p>
+          <p>Conoce los precios de referencia y confirma por WhatsApp el valor final de los servicios con precio desde.</p>
         </div>
         <div class="benefit-card">
           <div class="benefit-icon">📱</div>
           <h3>Coordinación por WhatsApp</h3>
-          <p>El siguiente paso de esta demo es abrir WhatsApp y conversar manualmente sobre una eventual atención.</p>
+          <p>Escríbenos por WhatsApp para consultar disponibilidad y coordinar los detalles de tu retiro.</p>
         </div>
         <div class="benefit-card">
           <div class="benefit-icon">⏱️</div>
-          <h3>Tiempos de referencia</h3>
-          <p>Los plazos mostrados son ficticios y pueden servir para orientar una conversación por WhatsApp.</p>
+          <h3>Entrega desde 48 horas</h3>
+          <p>El plazo depende de la demanda. Confirma por WhatsApp el tiempo estimado para tu pedido.</p>
         </div>
         <div class="benefit-card">
           <div class="benefit-icon">🤝</div>
@@ -821,7 +820,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
       </div>
       <p>Demo de una propuesta de lavandería a domicilio. Conoce los servicios y coordina cualquier consulta por WhatsApp.</p>
       <div class="footer-social">
-        <a href="https://web.whatsapp.com/send?phone=56941990328&amp;text=Hola%2C%20quiero%20solicitar%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Blue%20Laundry." aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+        <a href="https://wa.me/56941990328?text=Hola%2C%20quiero%20coordinar%20un%20retiro%20con%20Blue%20Laundry" aria-label="Abrir chat de Blue Laundry en WhatsApp" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
         </a>
       </div>
@@ -830,7 +829,7 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
       <h4>Navegación</h4>
       <p><a href="#hero">Inicio</a></p>
       <p><a href="#services">Servicios</a></p>
-      <p><a href="#delivery">Calendario de delivery</a></p>
+      <p><a href="#delivery">Calendario de retiros</a></p>
       <p><a href="#how">Cómo funciona</a></p>
       <p><a href="#faq">Preguntas frecuentes</a></p>
     </div>
@@ -861,11 +860,11 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
     </div>
     <div class="modal-body">
       <h3>Uso exclusivamente demostrativo</h3>
-      <p>Blue Laundry y este sitio forman parte de una demo. No hay contratación, pagos, órdenes, seguimiento, cancelaciones operativas ni garantías reales.</p>
-      <p>Los precios, ofertas, horarios, cobertura, testimonios y datos mostrados son ficticios y solo ilustran una posible experiencia.</p>
+      <p>Blue Laundry y este sitio forman parte de una demo. Este sitio no registra contrataciones ni órdenes reales y no procesa pagos; el pago del servicio es presencial.</p>
+      <p>Los precios y condiciones publicados son referenciales y deben confirmarse con Blue Laundry. Los horarios, sectores y disponibilidad del calendario pueden cambiar y se confirman al coordinar.</p>
       <h3>Coordinación por WhatsApp</h3>
       <p>Cualquier atención se coordina manualmente por WhatsApp. Abrir WhatsApp desde esta página no crea una solicitud ni confirma un servicio.</p>
-      <p>La demo no procesa pagos, no registra órdenes reales y no representa una operación comercial.</p>
+      <p>La coordinación y la disponibilidad del retiro deben confirmarse por WhatsApp.</p>
       <span class="modal-date">Contenido demostrativo · actualización: 29 de agosto de 2026</span>
     </div>
     <div class="modal-footer">
@@ -877,10 +876,10 @@ footer a:hover, footer a:focus-visible { color: var(--blue-400); }
 <script>
 const DATA = {
   services: [
-    { id: 'wash-fold', name: 'Lavado por kilo', desc: 'Lavado, secado y doblado de ropa cotidiana.', price: 4990, unit: 'kg', time: '24–48 horas', icon: '👕' },
-    { id: 'delicate', name: 'Lavado delicado', desc: 'Para prendas que requieren cuidados especiales.', price: 7990, unit: 'prenda', time: '48–72 horas', icon: '👗' },
-    { id: 'ironing', name: 'Planchado', desc: 'Servicio de planchado por prenda, con acabado profesional.', price: 2990, unit: 'prenda', time: '24 horas', icon: '👔' },
-    { id: 'bedding', name: 'Lavado de ropa de cama', desc: 'Sábanas, fundas, cubrecamas y artículos similares.', price: 6990, unit: 'kg', time: '48 horas', icon: '🛏️' }
+    { id: 'wash-fold', name: 'Lavado por kilo', desc: 'Lavado, secado y doblado de ropa cotidiana.', price: 3690, unit: 'kg', time: 'Entrega desde 48 horas, según demanda', icon: '👕' },
+    { id: 'wash-iron', name: 'Lavado y planchado', desc: 'Lavado y planchado de tus prendas. El valor final depende de la cantidad y el tipo de prendas; se confirma por WhatsApp.', price: 15000, priceFrom: true, unit: '', time: 'Entrega desde 48 horas, según demanda', icon: '👚' },
+    { id: 'ironing', name: 'Planchado', desc: 'Planchado de tus prendas. El valor final depende de la cantidad y el tipo de prendas; se confirma por WhatsApp.', price: 12000, priceFrom: true, unit: '', time: 'Entrega desde 48 horas, según demanda', icon: '👔' },
+    { id: 'bedding', name: 'Lavado de ropa de cama', desc: 'Lavado de sábanas, quilt y artículos similares.', price: 5590, unit: 'juego', unitPrefix: 'por', time: 'Entrega desde 48 horas, según demanda', icon: '🛏️' }
   ],
   testimonials: [
     { name: 'María González', text: 'Ejemplo de experiencia: recuperar tiempo y recibir la ropa limpia y doblada.', initials: 'MG' },
@@ -888,20 +887,19 @@ const DATA = {
     { name: 'Valentina Rivas', text: 'Ejemplo de experiencia: conversar sobre el cuidado especial de una prenda.', initials: 'VR' }
   ],
   faqs: [
-    { q: '¿Qué significan los tiempos mostrados?', a: 'Son referencias ficticias de la demo. Una atención real tendría que confirmar manualmente los plazos por WhatsApp.' },
-    { q: '¿Cómo se interpretan los precios?', a: 'Son valores ficticios para ilustrar la propuesta. No constituyen una cotización ni se pueden pagar desde este sitio.' },
-    { q: '¿Qué prendas aparecen en la propuesta?', a: 'La demo muestra ejemplos de ropa cotidiana, prendas delicadas, planchado y ropa de cama. Consulta por WhatsApp si quieres conversar sobre un caso real.' },
+    { q: '¿Cuánto tarda la entrega?', a: 'Las entregas son desde 48 horas, según la demanda. Confirma el plazo de tu pedido por WhatsApp.' },
+    { q: '¿Cómo se interpretan los precios?', a: 'El pago es presencial. En los servicios con precio desde, el valor final se confirma por WhatsApp según la cantidad y el tipo de prendas.' },
+    { q: '¿Qué prendas aparecen en la propuesta?', a: 'La demo muestra ejemplos de ropa cotidiana, lavado y planchado, planchado y ropa de cama. Consulta por WhatsApp para confirmar si podemos atender una prenda específica.' },
     { q: '¿Puedo modificar una coordinación?', a: 'Esta demo no registra coordinaciones. Cualquier cambio o consulta tendría que conversarse manualmente por WhatsApp.' },
     { q: '¿Qué ocurre si una prenda requiere cuidado especial?', a: 'La demo representa una conversación previa para revisar el caso. No recibe prendas ni procesa servicios reales.' }
   ],
   deliverySchedule: [
-    { day: 'Lunes', active: true, places: ['Hacienda Chicureo', 'Chicureo Centro'] },
-    { day: 'Martes', active: true, places: ['Piedra Roja', 'Santa Elena'] },
-    { day: 'Miércoles', active: true, places: ['Los Ingleses', 'El Cóndor'] },
-    { day: 'Jueves', active: true, places: ['Hacienda Chicureo', 'Piedra Roja'] },
-    { day: 'Viernes', active: true, places: ['Chicureo Centro', 'Santa Elena'] },
-    { day: 'Sábado', active: true, places: ['Todo Chicureo'] },
-    { day: 'Domingo', active: false, places: ['Sin rutas programadas'] }
+    { day: 'Lunes', active: false, label: 'Atención en local', places: [] },
+    { day: 'Martes', active: true, label: 'Retiros programados', places: ['Piedra Roja', 'Chicureo Centro'] },
+    { day: 'Miércoles', active: true, label: 'Retiros programados', places: ['La Reserva', 'Chamisero', 'El Umbral'] },
+    { day: 'Jueves', active: true, label: 'Retiros programados', places: ['Piedra Roja', 'Chicureo Centro'] },
+    { day: 'Viernes', active: true, label: 'Retiros programados', places: ['El Umbral', 'Chicauma', 'El Algarrobal', 'Santa Cecilia'] },
+    { day: 'Sábado', active: false, label: 'Atención en local', places: [] }
   ]
 };
 
@@ -914,7 +912,7 @@ function renderServices() {
       <h3>${s.name}</h3>
       <p>${s.desc}</p>
       <div class="service-meta">
-        <span class="service-price">$${s.price.toLocaleString('es-CL')} <small>/${s.unit}</small></span>
+        <span class="service-price">${s.priceFrom ? 'Desde ' : ''}$${s.price.toLocaleString('es-CL')}${s.unit ? ` <small>${s.unitPrefix ? ` ${s.unitPrefix} ` : '/'}${s.unit}</small>` : ''}</span>
         <span class="service-time">${s.time}</span>
       </div>
     </div>
@@ -963,15 +961,13 @@ function renderFAQs() {
 function renderDeliverySchedule() {
   const grid = document.getElementById('delivery-grid');
   grid.innerHTML = DATA.deliverySchedule.map(d => `
-    <div class="delivery-day ${d.active ? '' : 'no-service'}">
+    <div class="delivery-day ${d.active ? 'scheduled-route' : 'local-service'}">
       <div class="delivery-day-name">${d.day}</div>
       <div class="delivery-badge">
         <span class="delivery-badge-dot" aria-hidden="true"></span>
-        ${d.active ? 'Retiro y entrega' : 'Sin servicio'}
+        ${d.label}
       </div>
-      <div class="delivery-places">
-        ${d.places.map(p => `<span class="delivery-place">${p}</span>`).join('')}
-      </div>
+      ${d.places.length ? `<div class="delivery-places">${d.places.map(p => `<span class="delivery-place">${p}</span>`).join('')}</div>` : ''}
     </div>
   `).join('');
 }
@@ -1021,7 +1017,7 @@ document.addEventListener('DOMContentLoaded', () => {
   heroPause.addEventListener('click', () => {
     heroPaused = !heroPaused;
     heroPause.textContent = heroPaused ? '▶' : 'Ⅱ';
-    heroPause.setAttribute('aria-label', heroPaused ? 'Reanudar ofertas' : 'Pausar ofertas');
+    heroPause.setAttribute('aria-label', heroPaused ? 'Reanudar mensajes' : 'Pausar mensajes');
     heroPause.setAttribute('aria-pressed', String(heroPaused));
     startHeroTimer();
   });
