@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SRS de negocio — Blue Laundry</title>
+<style>
+:root{--blue-700:#1d4ed8;--blue-900:#1e3a8a;--ink:#1e293b;--muted:#475569;--line:#cbd5e1;--paper:#fff;--background:#f1f5f9}
+*{box-sizing:border-box}body{margin:0;background:var(--background);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}.document{max-width:1180px;margin:32px auto;padding:40px;background:var(--paper)}.document-nav{display:flex;flex-wrap:wrap;gap:12px 24px;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:32px}a{color:var(--blue-700);text-underline-offset:3px}a:focus-visible,.table-scroll:focus-visible{outline:3px solid var(--blue-700);outline-offset:4px}h1,h2,h3{color:var(--blue-900);line-height:1.25}h1{font-size:2rem}h2{margin-top:2.5rem;font-size:1.5rem;border-bottom:1px solid var(--line);padding-bottom:12px}h3{margin-top:1.8rem;font-size:1.15rem}p,li{max-width:90ch}li{margin-bottom:6px}.table-scroll{overflow-x:auto;margin:24px 0}table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{border:1px solid var(--line);padding:12px;text-align:left;vertical-align:top;min-width:140px}th{background:#eff6ff;color:var(--blue-900)}tbody tr:nth-child(even){background:#f8fafc}code{font-size:.88em;overflow-wrap:anywhere}.page-note{color:var(--muted);font-size:.9rem}.skip-link{position:absolute;left:12px;top:-100px;background:white;padding:12px}.skip-link:focus{top:12px}
+@media(max-width:1024px){.document{margin:20px;padding:28px}}
+@media(max-width:768px){.document{margin:0;padding:24px}h1{font-size:1.7rem}}
+@media(max-width:480px){.document{padding:18px}body{font-size:16px}h1{font-size:1.5rem}th,td{padding:10px}}
+@media print{body{background:white;font-size:10pt}.document{max-width:none;margin:0;padding:0}.document-nav,.skip-link,.page-note{display:none}h2,h3{break-after:avoid}tr{break-inside:avoid}.table-scroll{overflow:visible}th,td{min-width:0;padding:6px;font-size:9pt}a{color:inherit}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#documento">Ir al documento</a>
+<div class="document">
+<nav class="document-nav" aria-label="Navegación del documento">
+<a href="../index.html">Inicio de Blue Laundry</a>
+<a href="index.html">Ver demo de clientes</a>
+<a href="SRS-NEGOCIO.md" download>Descargar versión editable</a>
+<a href="#decisiones">Decisiones pendientes</a>
+</nav>
+<main id="documento">
+<h1 id="blue-laundry-srs-de-negocio-del-sitio-de-clientes">Blue Laundry — SRS de negocio del sitio de clientes</h1>
+<p><strong>Versión:</strong> 1.0</p>
+<p><strong>Fecha:</strong> 25 de septiembre de 2026</p>
+<p><strong>Estado:</strong> Base para revisión de negocio; decisiones pendientes identificadas.</p>
+<p><strong>Alcance:</strong> Exclusivamente la experiencia de clientes (<code>clients</code>).</p>
+<h2 id="proposito-del-documento">1. Propósito del documento</h2>
+<p>Especificar qué debe comunicar y permitir el sitio de clientes de Blue Laundry, qué reglas comerciales representa actualmente y qué definiciones debe completar el cliente contratante antes de utilizarlo como canal comercial real.</p>
+<p>Este SRS está dirigido a quienes toman decisiones comerciales y operacionales. No define arquitectura, programación ni integraciones. En este documento, <strong>cliente contratante</strong> es quien aprueba las condiciones de Blue Laundry; <strong>visitante</strong> o <strong>cliente final</strong> es quien consulta por un servicio de lavandería.</p>
+<p>La base es el contenido actual de <code>clients/index.html</code>, contrastado con el plan de ajustes del 25 de septiembre de 2026. Los requisitos originales se usan como antecedente, no como descripción de funcionalidades actuales.</p>
+<h3 id="como-interpretar-los-estados">Cómo interpretar los estados</h3>
+<div class="table-scroll" role="region" aria-label="Tabla del SRS" tabindex="0"><table>
+<thead>
+<tr>
+<th>Estado</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base acordada</td>
+<td>El plan reciente registra el acuerdo y el sitio lo refleja. No implica que la demo opere un servicio real.</td>
+</tr>
+<tr>
+<td>Presente en la demo</td>
+<td>El contenido existe, pero no constituye por sí solo una política comercial aprobada.</td>
+</tr>
+<tr>
+<td>Pendiente de decisión</td>
+<td>Falta una definición del cliente contratante. No se asume una respuesta.</td>
+</tr>
+<tr>
+<td>Fuera de alcance</td>
+<td>No forma parte de la experiencia actual ni se incorpora por este documento.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="objetivo-de-negocio">2. Objetivo de negocio</h2>
+<p>Facilitar que una persona conozca los servicios, revise precios de referencia y sectores de retiro, y comience una conversación por WhatsApp para coordinar la atención.</p>
+<p>La propuesta de valor es <strong>«Tu ropa limpia, tu tiempo libre»</strong>: ahorrar traslados y tiempo, con retiro y entrega a domicilio sujetos a coordinación y cuidado de las prendas según el servicio elegido.</p>
+<p>El resultado esperado dentro del sitio es que el visitante comprenda la oferta y pueda abrir el contacto. La cotización, la disponibilidad y la coordinación ocurren manualmente fuera del sitio. <strong>Abrir WhatsApp no equivale a enviar un mensaje, reservar un retiro ni confirmar una contratación.</strong></p>
+<h2 id="alcance-actual-y-antecedentes">3. Alcance actual y antecedentes</h2>
+<h3 id="incluido">Incluido</h3>
+<ul>
+<li>Presentación de la marca y mensajes comerciales.</li>
+<li>Catálogo de cuatro servicios con precios de referencia y plazo orientativo.</li>
+<li>Explicación del proceso de atención.</li>
+<li>Calendario semanal de retiros por sector.</li>
+<li>Consulta de retiros excepcionales, sujeta a confirmación.</li>
+<li>Acceso a WhatsApp con un mensaje preparado para coordinar o consultar disponibilidad.</li>
+<li>Beneficios, preguntas frecuentes y testimonios identificados como ilustrativos.</li>
+<li>Datos de contacto y nota de uso de la demo.</li>
+<li>Consulta desde teléfono, tableta y computador, con navegación comprensible y accesible.</li>
+</ul>
+<h3 id="fuera-de-alcance">Fuera de alcance</h3>
+<ul>
+<li>Panel de gestión, caja, inventario y cualquier función de <code>management</code>.</li>
+<li>Formulario de contratación, selección de cantidades, carrito y cálculo de un pedido.</li>
+<li>Reserva de fechas o cupos dentro del sitio.</li>
+<li>Registro de clientes, cuentas e historial de pedidos.</li>
+<li>Creación, confirmación o seguimiento de órdenes dentro del sitio.</li>
+<li>Cobros en línea, aplicación automática de descuentos y envío automático de notificaciones.</li>
+<li>Consulta de disponibilidad en tiempo real o gestión de reclamos dentro del sitio.</li>
+</ul>
+<p>Los documentos iniciales describían un formulario de cinco pasos y una confirmación ficticia. <strong>Ese flujo no está presente en la versión actual.</strong> El plan reciente registra que «Agenda retiro» debe abrir WhatsApp. Este SRS conserva esa base; recuperar la contratación dentro del sitio sería un cambio de alcance que requeriría una decisión nueva.</p>
+<h2 id="participantes-y-responsabilidades">4. Participantes y responsabilidades</h2>
+<div class="table-scroll" role="region" aria-label="Tabla del SRS" tabindex="0"><table>
+<thead>
+<tr>
+<th>Participante</th>
+<th>Necesidad o responsabilidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Visitante / cliente final</td>
+<td>Entender la oferta, consultar cobertura y precios, y contactar a Blue Laundry.</td>
+</tr>
+<tr>
+<td>Atención de Blue Laundry</td>
+<td>Recibir consultas y confirmar manualmente condiciones, disponibilidad y coordinación. La persona responsable y sus horarios están pendientes.</td>
+</tr>
+<tr>
+<td>Cliente contratante</td>
+<td>Aprobar catálogo, reglas de precio, promoción, cobertura, condiciones de atención y contenido público.</td>
+</tr>
+</tbody>
+</table></div>
+<p>La operación posterior al contacto solo se describe para aclarar las expectativas que genera el sitio; no se especifica aquí una herramienta para gestionarla.</p>
+<h2 id="recorrido-de-negocio">5. Recorrido de negocio</h2>
+<ol>
+<li><strong>Conocer la propuesta.</strong> El visitante identifica Blue Laundry y entiende el beneficio del servicio.</li>
+<li><strong>Revisar servicios y referencias de precio.</strong> Consulta qué incluye cada alternativa y cuáles requieren una cotización final.</li>
+<li><strong>Consultar retiros.</strong> Revisa días y sectores; puede consultar una excepción si su sector no aparece.</li>
+<li><strong>Iniciar el contacto.</strong> Selecciona «Agenda retiro» o la consulta de disponibilidad y abre WhatsApp con un mensaje preparado.</li>
+<li><strong>Coordinar fuera del sitio.</strong> El visitante decide enviar el mensaje. Blue Laundry debe confirmar manualmente las condiciones aplicables antes de asumir un compromiso. Los datos requeridos y el criterio de confirmación deben definirse en D-10.</li>
+</ol>
+<p>No existe una pantalla de éxito comercial ni un número de orden generado por el sitio. Si el visitante no continúa en WhatsApp, la página no registra una solicitud.</p>
+<h2 id="oferta-comercial-de-referencia">6. Oferta comercial de referencia</h2>
+<h3 id="servicios">6.1 Servicios</h3>
+<p>Los siguientes nombres y precios corresponden a la base acordada para la demo. Los importes se expresan en pesos chilenos.</p>
+<div class="table-scroll" role="region" aria-label="Tabla del SRS" tabindex="0"><table>
+<thead>
+<tr>
+<th>Servicio</th>
+<th>Precio publicado</th>
+<th>Alcance comunicado</th>
+<th>Definición pendiente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lavado por kilo</td>
+<td>$3.690/kg</td>
+<td>Lavado, secado y doblado de ropa cotidiana.</td>
+<td>Mínimo, pesaje, redondeo, prendas admitidas y posibles recargos.</td>
+</tr>
+<tr>
+<td>Lavado y planchado</td>
+<td>Desde $15.000</td>
+<td>Lavado y planchado; valor final según cantidad y tipo de prendas, confirmado por WhatsApp.</td>
+<td>Base de cobro y contenido del precio inicial. La descripción es provisional.</td>
+</tr>
+<tr>
+<td>Planchado</td>
+<td>Desde $12.000</td>
+<td>Planchado; valor final según cantidad y tipo de prendas, confirmado por WhatsApp.</td>
+<td>Base de cobro y contenido del precio inicial. La descripción es provisional.</td>
+</tr>
+<tr>
+<td>Lavado de ropa de cama</td>
+<td>$5.590 por juego</td>
+<td>Lavado de sábanas, quilt y artículos similares.</td>
+<td>Qué incluye un juego y variaciones por tamaño, material o tipo de artículo.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Los precios «desde» no tienen una unidad comercial definida. No deben interpretarse como valores por kilo, por prenda o por una cantidad determinada sin aprobación del cliente contratante.</p>
+<h3 id="promocion-y-pago">6.2 Promoción y pago</h3>
+<ul>
+<li><strong>Base acordada:</strong> 15% de descuento en el primer pedido, sin código promocional.</li>
+<li><strong>Base acordada:</strong> pago presencial; el sitio no realiza cobros.</li>
+<li><strong>Pendiente:</strong> vigencia, elegibilidad, servicios incluidos, límites, acumulación y tratamiento de gastos de traslado.</li>
+<li><strong>Pendiente:</strong> medios aceptados, momento y lugar del pago, y comunicación del importe final.</li>
+</ul>
+<p>La demo comunica el descuento, pero no verifica si una persona es cliente nuevo ni calcula o aplica el beneficio.</p>
+<h3 id="calendario-de-retiros">6.3 Calendario de retiros</h3>
+<div class="table-scroll" role="region" aria-label="Tabla del SRS" tabindex="0"><table>
+<thead>
+<tr>
+<th>Día</th>
+<th>Atención o sectores publicados</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lunes</td>
+<td>Atención en local.</td>
+</tr>
+<tr>
+<td>Martes</td>
+<td>Piedra Roja y Chicureo Centro.</td>
+</tr>
+<tr>
+<td>Miércoles</td>
+<td>La Reserva, Chamisero y El Umbral.</td>
+</tr>
+<tr>
+<td>Jueves</td>
+<td>Piedra Roja y Chicureo Centro.</td>
+</tr>
+<tr>
+<td>Viernes</td>
+<td>El Umbral, Chicauma, El Algarrobal y Santa Cecilia.</td>
+</tr>
+<tr>
+<td>Sábado</td>
+<td>Atención en local.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Los retiros se comunican de martes a viernes, hasta las 16:00.</li>
+<li>La Reserva y Chamisero son sectores separados.</li>
+<li>El calendario informa retiros programados; no reserva cupos ni garantiza disponibilidad.</li>
+<li>Se puede consultar excepcionalmente un retiro en otro sector, sujeto a confirmación.</li>
+<li>El calendario no define los días de entrega a domicilio.</li>
+<li>No se publican horario de inicio de retiros, dirección y horarios del local, ni condiciones para domingos o festivos. Su ausencia no significa apertura o cierre.</li>
+</ul>
+<h3 id="plazo-de-entrega">6.4 Plazo de entrega</h3>
+<p>La referencia común es <strong>«Entrega desde 48 horas, según demanda»</strong>. No equivale a entrega garantizada dentro de 48 horas. Falta definir desde qué momento se cuenta el plazo, si se consideran días hábiles y cómo se acuerda una fecha concreta.</p>
+<p>El plan reciente menciona un servicio express con costo adicional, pero lo excluye de la promoción de esta versión. No forma parte del catálogo visible de cuatro servicios de este SRS.</p>
+<h2 id="requisitos-de-negocio-y-aceptacion">7. Requisitos de negocio y aceptación</h2>
+<p>Estos criterios sirven para revisar el alcance con el cliente contratante. Su inclusión no certifica que se haya realizado una prueba de navegación en todos los dispositivos.</p>
+<div class="table-scroll" role="region" aria-label="Tabla del SRS" tabindex="0"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Criterio de aceptación de negocio</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RN-01</td>
+<td>Comunicar la propuesta de Blue Laundry y orientar hacia el contacto.</td>
+<td>El visitante identifica la marca, el beneficio principal y la acción «Agenda retiro».</td>
+<td>Base acordada.</td>
+</tr>
+<tr>
+<td>RN-02</td>
+<td>Mostrar los cuatro servicios y distinguir precios por unidad de precios «desde».</td>
+<td>Cada servicio presenta nombre, descripción, precio y plazo; los dos precios «desde» indican que el valor final se confirma por WhatsApp.</td>
+<td>Base acordada; reglas de cobro pendientes.</td>
+</tr>
+<tr>
+<td>RN-03</td>
+<td>Explicar el proceso sin presentar una consulta como reserva.</td>
+<td>Se describen consulta del calendario, coordinación del retiro, cuidado de prendas y coordinación de entrega.</td>
+<td>Base acordada.</td>
+</tr>
+<tr>
+<td>RN-04</td>
+<td>Mostrar el calendario de retiros por sector.</td>
+<td>Se presentan los seis días de la tabla, la atención en local y el límite de las 16:00, sin prometer entregas en esos mismos días.</td>
+<td>Base acordada.</td>
+</tr>
+<tr>
+<td>RN-05</td>
+<td>Permitir consultar cobertura excepcional.</td>
+<td>La consulta por otro sector está disponible y se explica que requiere confirmación.</td>
+<td>Base acordada; condiciones pendientes.</td>
+</tr>
+<tr>
+<td>RN-06</td>
+<td>Facilitar el contacto para coordinar un retiro.</td>
+<td>«Agenda retiro» dirige a WhatsApp con el mensaje «Hola, quiero coordinar un retiro con Blue Laundry»; no comunica una orden confirmada.</td>
+<td>Base acordada.</td>
+</tr>
+<tr>
+<td>RN-07</td>
+<td>Comunicar la promoción de bienvenida.</td>
+<td>Se muestran 15% en el primer pedido, ausencia de código y pago presencial. Para uso comercial deben incorporarse las condiciones aprobadas en D-04.</td>
+<td>Base acordada; condiciones pendientes.</td>
+</tr>
+<tr>
+<td>RN-08</td>
+<td>Informar un plazo orientativo consistente.</td>
+<td>Servicios, proceso y preguntas frecuentes expresan «desde 48 horas, según demanda» y remiten a la confirmación del plazo.</td>
+<td>Base acordada.</td>
+</tr>
+<tr>
+<td>RN-09</td>
+<td>Resolver dudas antes del contacto.</td>
+<td>Se pueden consultar respuestas sobre plazo, precios, prendas, cambios de coordinación y cuidado especial.</td>
+<td>Presente en la demo.</td>
+</tr>
+<tr>
+<td>RN-10</td>
+<td>Presentar beneficios sin atribuir capacidades inexistentes.</td>
+<td>El contenido no promete reservas, seguimiento o atención automática desde la página.</td>
+<td>Presente en la demo.</td>
+</tr>
+<tr>
+<td>RN-11</td>
+<td>Distinguir ejemplos de testimonios reales.</td>
+<td>Los tres testimonios y sus valoraciones se identifican como ilustrativos; su uso comercial requiere D-13.</td>
+<td>Presente en la demo.</td>
+</tr>
+<tr>
+<td>RN-12</td>
+<td>Mostrar contacto y límites de la demostración.</td>
+<td>El teléfono, correo, referencia geográfica y nota de demo son consultables; se aclara que no hay contratación ni pagos dentro del sitio.</td>
+<td>Presente en la demo; datos por validar.</td>
+</tr>
+<tr>
+<td>RN-13</td>
+<td>Facilitar el uso en distintos dispositivos y formas de navegación.</td>
+<td>Se puede leer, navegar y acceder al contacto desde móvil, tableta y computador; los controles son comprensibles, utilizables con teclado y los mensajes rotativos pueden pausarse.</td>
+<td>Criterio de aceptación pendiente de revisión práctica.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="decisiones">8. Decisiones pendientes del cliente contratante</h2>
+<p><strong>Todas las decisiones siguientes permanecen abiertas en este SRS.</strong> Se distingue lo expresamente pendiente en el plan de lo que no está definido en los materiales revisados. Los roles indicados son responsables sugeridos; el cliente contratante debe asignar a la persona que aprueba.</p>
+<p><strong>Prioridad A:</strong> resolver antes de presentar la oferta como un servicio comercial definitivo. <strong>Prioridad B:</strong> resolver para completar la atención y evaluación del canal. Estas prioridades son una propuesta de revisión, no nuevos acuerdos.</p>
+<div class="table-scroll" role="region" aria-label="Tabla del SRS" tabindex="0"><table>
+<thead>
+<tr>
+<th>ID / prioridad</th>
+<th>Decisión que debe tomar el cliente</th>
+<th>Situación actual y respuesta requerida</th>
+<th>Responsable sugerido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D-01 / A</td>
+<td>Base de cobro de lavado y planchado y de planchado.</td>
+<td>Pendiente explícito del plan. Definir qué obtiene el cliente por $15.000 y $12.000, unidad o paquete, mínimos, exclusiones y cómo varía el total.</td>
+<td>Comercial.</td>
+</tr>
+<tr>
+<td>D-02 / A</td>
+<td>Reglas de kilo y juego.</td>
+<td>No definidas. Aprobar mínimo de kilos, pesaje y redondeo; composición del juego de cama y tarifas por tamaño o artículo.</td>
+<td>Comercial y operación.</td>
+</tr>
+<tr>
+<td>D-03 / A</td>
+<td>Costo completo del servicio.</td>
+<td>No se informa si retiro y entrega tienen costo o están incluidos. Definir cargos por zona, mínimos, recargos e inclusión de impuestos en los precios publicados. No asumir traslado gratuito.</td>
+<td>Comercial.</td>
+</tr>
+<tr>
+<td>D-04 / A</td>
+<td>Condiciones de la promoción del 15%.</td>
+<td>El porcentaje y la ausencia de código están acordados. Definir vigencia, qué significa primer pedido, servicios elegibles, monto máximo o mínimo, acumulación y base sobre la cual se descuenta.</td>
+<td>Comercial.</td>
+</tr>
+<tr>
+<td>D-05 / A</td>
+<td>Condiciones del pago presencial.</td>
+<td>Modalidad general acordada. Definir efectivo, tarjeta u otros medios, lugar, momento, comprobante y aceptación del valor final por el cliente.</td>
+<td>Comercial y operación.</td>
+</tr>
+<tr>
+<td>D-06 / A</td>
+<td>Límites de cobertura y excepciones.</td>
+<td>Días y sectores acordados. Definir límites territoriales, direcciones atendibles, criterios y recargos de excepciones y quién puede confirmarlas.</td>
+<td>Operación.</td>
+</tr>
+<tr>
+<td>D-07 / A</td>
+<td>Reglas para agendar retiros.</td>
+<td>Se publica «hasta las 16:00». Aclarar si es fin de los retiros o corte de solicitudes; definir hora de inicio, anticipación, ventanas de atención, cupos y festivos.</td>
+<td>Operación.</td>
+</tr>
+<tr>
+<td>D-08 / A</td>
+<td>Compromiso de entrega.</td>
+<td>Se publica «desde 48 horas, según demanda». Definir inicio del cómputo, días hábiles o corridos, entrega a domicilio o retiro en local, ventanas y comunicación de atrasos.</td>
+<td>Operación.</td>
+</tr>
+<tr>
+<td>D-09 / A</td>
+<td>Admisión y cuidado de prendas.</td>
+<td>No hay listado completo de exclusiones. Definir prendas y materiales aceptados, revisión de estado, manchas, tratamientos especiales y autorización de cargos adicionales.</td>
+<td>Operación.</td>
+</tr>
+<tr>
+<td>D-10 / A</td>
+<td>Atención y confirmación por WhatsApp.</td>
+<td>El canal está acordado. Definir responsable, horario y tiempo objetivo de respuesta, datos que se solicitan, quién confirma precio y retiro y qué mensaje deja constancia del acuerdo.</td>
+<td>Atención y operación.</td>
+</tr>
+<tr>
+<td>D-11 / A</td>
+<td>Cambios, cancelaciones e incidencias.</td>
+<td>La demo remite a una conversación manual. Definir anticipación para cambios, retiros fallidos, ausencia del cliente, reclamos, daños, pérdidas, repetición del servicio y devoluciones cuando correspondan.</td>
+<td>Dirección y operación.</td>
+</tr>
+<tr>
+<td>D-12 / A</td>
+<td>Identidad, contactos y atención local.</td>
+<td>Se muestran +56 9 4199 0328, hola@bluelaundry.cl y Santiago, Chile. Validar titularidad y uso comercial, dirección del local y horarios, especialmente lunes y sábado.</td>
+<td>Cliente contratante.</td>
+</tr>
+<tr>
+<td>D-13 / A</td>
+<td>Contenido y documentos para uso comercial.</td>
+<td>La nota de demo no sustituye condiciones del servicio; la política de privacidad no está disponible y los testimonios son ficticios. Aprobar textos comerciales, tratamiento de datos del contacto y testimonios reales autorizados, o retirar estos últimos.</td>
+<td>Cliente contratante, con los asesores que determine.</td>
+</tr>
+<tr>
+<td>D-14 / B</td>
+<td>Alternativa para quienes no usan WhatsApp.</td>
+<td>El correo y teléfono se muestran como contacto, pero no se define un proceso alternativo. Decidir si se aceptan solicitudes por llamada o correo y quién las atiende.</td>
+<td>Atención.</td>
+</tr>
+<tr>
+<td>D-15 / B</td>
+<td>Evaluación y mantenimiento del canal.</td>
+<td>No hay metas ni responsables definidos. Elegir indicadores, metas, frecuencia de revisión y responsable de mantener precios, promoción, calendario y preguntas frecuentes.</td>
+<td>Comercial.</td>
+</tr>
+</tbody>
+</table></div>
+<p>La aprobación de este SRS no completa automáticamente estas decisiones. Cada respuesta debe quedar registrada con su responsable y fecha, y reflejarse en el contenido cuando corresponda.</p>
+<h2 id="escenarios-que-requieren-una-respuesta-comercial">9. Escenarios que requieren una respuesta comercial</h2>
+<div class="table-scroll" role="region" aria-label="Tabla del SRS" tabindex="0"><table>
+<thead>
+<tr>
+<th>Situación del visitante</th>
+<th>Respuesta prevista en el alcance actual</th>
+<th>Decisión relacionada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Su sector no aparece en el calendario.</td>
+<td>Puede consultar una excepción; no se le garantiza atención.</td>
+<td>D-06.</td>
+</tr>
+<tr>
+<td>Necesita una fecha o retiro inmediato.</td>
+<td>Debe consultar disponibilidad; el calendario no asegura un cupo.</td>
+<td>D-07 y D-08.</td>
+</tr>
+<tr>
+<td>Quiere saber el total de un servicio «desde».</td>
+<td>Debe recibir una cotización manual según las reglas que apruebe Blue Laundry.</td>
+<td>D-01 a D-03.</td>
+</tr>
+<tr>
+<td>Solicita el descuento del primer pedido.</td>
+<td>La página informa el beneficio; la elegibilidad y aplicación se resuelven fuera del sitio.</td>
+<td>D-04.</td>
+</tr>
+<tr>
+<td>Desea cambiar o cancelar un retiro coordinado.</td>
+<td>Debe contactar manualmente; la página no modifica reservas.</td>
+<td>D-10 y D-11.</td>
+</tr>
+<tr>
+<td>Tiene una prenda especial o un reclamo.</td>
+<td>Requiere evaluación y atención manual, sin promesa de tratamiento o compensación en la demo.</td>
+<td>D-09 y D-11.</td>
+</tr>
+<tr>
+<td>No puede continuar en WhatsApp.</td>
+<td>Puede consultar los datos de contacto visibles; falta acordar el canal alternativo de atención.</td>
+<td>D-14.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="indicadores-propuestos-para-validar-el-negocio">10. Indicadores propuestos para validar el negocio</h2>
+<p>Los siguientes indicadores son propuestas sujetas a D-15. No se afirma que el sitio los mida actualmente.</p>
+<ul>
+<li>Consultas recibidas que provienen del sitio.</li>
+<li>Proporción de consultas que terminan en un retiro confirmado manualmente.</li>
+<li>Tiempo de respuesta durante el horario de atención acordado.</li>
+<li>Consultas rechazadas por cobertura o falta de disponibilidad.</li>
+<li>Dudas recurrentes sobre precio, descuento, retiro y entrega.</li>
+</ul>
+<p>El cliente debe definir metas y una forma de registrar los resultados. Un clic de contacto, un mensaje recibido y un servicio confirmado son eventos distintos y deben evaluarse por separado.</p>
+<h2 id="criterios-para-aprobar-el-documento">11. Criterios para aprobar el documento</h2>
+<p>El cliente contratante podrá aprobar este SRS como base del alcance cuando:</p>
+<ol>
+<li>Reconozca que la experiencia actual es informativa y deriva a coordinación manual por WhatsApp.</li>
+<li>Valide la oferta y el calendario descritos como base acordada.</li>
+<li>Identifique a los responsables y las fechas para resolver D-01 a D-15.</li>
+<li>Distinga la aprobación de la demo de la autorización para publicar condiciones comerciales definitivas.</li>
+<li>Acepte que nuevas funciones de contratación, pago o seguimiento requieren ampliar el alcance.</li>
+</ol>
+<div class="table-scroll" role="region" aria-label="Tabla del SRS" tabindex="0"><table>
+<thead>
+<tr>
+<th>Registro de aprobación</th>
+<th>Por completar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nombre y rol de quien aprueba</td>
+<td>Pendiente.</td>
+</tr>
+<tr>
+<td>Fecha de revisión</td>
+<td>Pendiente.</td>
+</tr>
+<tr>
+<td>Resultado</td>
+<td>Pendiente: aprobado / aprobado con observaciones / requiere ajustes.</td>
+</tr>
+<tr>
+<td>Decisiones resueltas y observaciones</td>
+<td>Registrar IDs, respuesta y fecha.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="fuentes-y-limite-de-la-revision">12. Fuentes y límite de la revisión</h2>
+<ul>
+<li><strong>Fuente principal:</strong> <code>clients/index.html</code>, versión local revisada el 25 de septiembre de 2026.</li>
+<li><strong>Acuerdos recientes:</strong> <code>docs/superpowers/plans/2026-09-25-ajustes-cliente.md</code>, especialmente contenido acordado y validación comercial pendiente.</li>
+<li><strong>Antecedentes:</strong> <code>PRODUCT.md</code>, <code>REQUIREMENTS.md</code>, <code>DESIGN.md</code> y <code>AGENTS.md</code>. Sus referencias al formulario de contratación no describen la experiencia actual.</li>
+</ul>
+<p>El documento se elaboró mediante revisión de los archivos y del contenido declarado. No confirma capacidad operacional, propiedad de los contactos, vigencia comercial de las condiciones ni resultados de pruebas de navegación. No se modificó la demo para elaborar este SRS.</p>
+
+</main>
+<p class="page-note">Documento de revisión de negocio. Puedes imprimir esta página o guardarla como PDF desde tu navegador.</p>
+</div>
+</body>
+</html>
