@@ -122,43 +122,43 @@
 
 **Archivo:** `clients/index.html`, encabezado, carrusel y sección `#how`.
 
-- [ ] Revisar estado Git y conservar cualquier cambio ajeno. Crear la rama `feat/ajustes-demo-cliente` antes de tocar la aplicación; conservar este plan en ella.
-- [ ] Leer `superpowers:executing-plans` y, justo antes de editar UI, `impeccable/reference/craft-floor.md`. Consultar el playbook de copy `reference/clarify.md`.
+- [x] Revisar estado Git y conservar cualquier cambio ajeno. Crear la rama `feat/ajustes-demo-cliente` antes de tocar la aplicación; conservar este plan en ella.
+- [x] Leer `superpowers:executing-plans` y, justo antes de editar UI, `impeccable/reference/craft-floor.md`. Consultar el playbook de copy `reference/clarify.md`.
 - [ ] Revisar la landing actual en escritorio y móvil como referencia visual.
-- [ ] Aplicar lema, promoción del 15%, pago presencial, CTA «Agenda retiro» y copy del proceso definidos arriba.
-- [ ] Mantener una nota visible de demo y sustituir «ofertas y códigos ficticios» por «Contenido demostrativo».
+- [x] Aplicar lema, promoción del 15%, pago presencial, CTA «Agenda retiro» y copy del proceso definidos arriba.
+- [x] Mantener una nota visible de demo y sustituir «ofertas y códigos ficticios» por «Contenido demostrativo».
 - [ ] Comprobar carrusel, enlaces a `#how` y `#delivery`, foco, pausa y comportamiento con movimiento reducido.
-- [ ] Verificar que no quedan referencias comerciales al 20% ni a `BIENVENIDA20` en la landing.
+- [x] Verificar que no quedan referencias comerciales al 20% ni a `BIENVENIDA20` en la landing.
 
 ### 2. Actualizar catálogo y plazos
 
 **Archivo:** `clients/index.html`, `DATA.services`, `renderServices()`, beneficios y `DATA.faqs`.
 
-- [ ] Aplicar las cuatro filas de la tabla acordada y el plazo común.
-- [ ] Introducir `priceFrom` y unidades opcionales, manteniendo `price` numérico y formato `es-CL`.
-- [ ] Adaptar el renderizador para mostrar exactamente `$3.690/kg`, `Desde $15.000`, `Desde $12.000` y `$5.590 por juego`.
-- [ ] Actualizar la FAQ de tiempos: «Las entregas son desde 48 horas, según la demanda. Confirma el plazo de tu pedido por WhatsApp».
-- [ ] Actualizar la FAQ de precios: «El pago es presencial. Los servicios con precio desde requieren confirmar el valor final por WhatsApp según la cantidad y el tipo de prendas».
+- [x] Aplicar las cuatro filas de la tabla acordada y el plazo común.
+- [x] Introducir `priceFrom` y unidades opcionales, manteniendo `price` numérico y formato `es-CL`.
+- [x] Adaptar el renderizador para mostrar exactamente `$3.690/kg`, `Desde $15.000`, `Desde $12.000` y `$5.590 por juego`.
+- [x] Actualizar la FAQ de tiempos: «Las entregas son desde 48 horas, según la demanda. Confirma el plazo de tu pedido por WhatsApp».
+- [x] Actualizar la FAQ de precios: «El pago es presencial. Los servicios con precio desde requieren confirmar el valor final por WhatsApp según la cantidad y el tipo de prendas».
 - [ ] Revisar que ninguna tarjeta ni beneficio contradiga esos precios, unidades o plazos; comprobar ajuste de texto a 320–375 px.
-- [ ] Mantener el express fuera de las llamadas promocionales.
+- [x] Mantener el express fuera de las llamadas promocionales.
 
 ### 3. Ajustar calendario y disponibilidad excepcional
 
 **Archivo:** `clients/index.html`, `DATA.deliverySchedule`, `renderDeliverySchedule()`, `.delivery-grid` y `.delivery-note`.
 
-- [ ] Sustituir los datos por los seis días acordados y sus sectores exactos.
-- [ ] Añadir etiquetas explícitas «Atención en local» y «Retiros programados», evitando inferir «Sin servicio» para el lunes y el sábado.
-- [ ] Añadir horario hasta las 16:00 y explicación de cobertura excepcional, con enlace para consultar por WhatsApp.
-- [ ] Ajustar la grilla de seis días siguiendo los estilos existentes; usar una columna en pantallas estrechas si las listas no caben cómodamente.
+- [x] Sustituir los datos por los seis días acordados y sus sectores exactos.
+- [x] Añadir etiquetas explícitas «Atención en local» y «Retiros programados», evitando inferir «Sin servicio» para el lunes y el sábado.
+- [x] Añadir horario hasta las 16:00 y explicación de cobertura excepcional, con enlace para consultar por WhatsApp.
+- [x] Ajustar la grilla de seis días siguiendo los estilos existentes; usar una columna en pantallas estrechas si las listas no caben cómodamente.
 - [ ] Comprobar visualmente el lunes, el viernes y el sábado, los nombres separados de La Reserva y Chamisero y la ausencia de rutas de fin de semana.
 
 ### 4. Unificar destinos de WhatsApp
 
 **Archivo:** `clients/index.html`, todos los enlaces de WhatsApp.
 
-- [ ] Verificar la documentación oficial vigente y registrar el enlace elegido y sus límites de apertura de aplicaciones.
-- [ ] Aplicar el destino HTTPS adecuado, número existente y mensaje de retiro codificado, conservando enlaces HTML funcionales sin depender de JavaScript.
-- [ ] Verificar que todos los CTA «Agenda retiro» y los enlaces de contacto tienen un destino válido; mantener nombres accesibles en enlaces con iconos.
+- [x] Verificar la documentación oficial vigente y registrar el enlace elegido y sus límites de apertura de aplicaciones.
+- [x] Aplicar el destino HTTPS adecuado, número existente y mensaje de retiro codificado, conservando enlaces HTML funcionales sin depender de JavaScript.
+- [x] Verificar que todos los CTA «Agenda retiro» y los enlaces de contacto tienen un destino válido; mantener nombres accesibles en enlaces con iconos.
 - [ ] Probar desde el navegador disponible hasta la pantalla de apertura o selección de WhatsApp, sin enviar mensajes.
 - [ ] Comprobar la alternativa web y que no existen temporizadores ni intentos repetidos de apertura.
 - [ ] Registrar por separado los entornos realmente probados: la emulación móvil valida el layout, pero no demuestra apertura de una app nativa en un teléfono real.
@@ -170,11 +170,11 @@
 - [ ] Realizar una pasada conjunta en escritorio y móvil: 1440 px, 768 px y 320–375 px. Verificar textos, precios, calendario, CTA, menú móvil, carrusel y FAQ.
 - [ ] Comprobar teclado, foco visible, ausencia de scroll horizontal y errores de consola, tanto con servidor estático como abriendo el HTML directamente.
 - [ ] Corregir en una sola tanda los defectos encontrados y hacer una segunda pasada de confirmación como máximo, según Impeccable.
-- [ ] No añadir una infraestructura de tests para cambios de copy. Si la implementación exige lógica de navegación adicional, cubrir sus ramas con pruebas de comportamiento antes de darla por terminada.
-- [ ] Ejecutar `git diff --check` y revisar el diff para descartar modificaciones al hub, gestión o contenido fuera de alcance.
-- [ ] Registrar resultados y limitaciones reales de las pruebas, especialmente la apertura de aplicaciones nativas.
-- [ ] Hacer commit de los cambios revisados, publicar la rama y crear un PR contra la rama base del repositorio, confirmándola antes de crearlo.
-- [ ] Describir en el PR el problema, resultado, validaciones y la base de cobro aún pendiente para los dos precios «desde». Adjuntar el PR a esta tarea y entregar su enlace. No hacer merge.
+- [x] No añadir una infraestructura de tests para cambios de copy. Si la implementación exige lógica de navegación adicional, cubrir sus ramas con pruebas de comportamiento antes de darla por terminada.
+- [x] Ejecutar `git diff --check` y revisar el diff para descartar modificaciones al hub, gestión o contenido fuera de alcance.
+- [x] Registrar resultados y limitaciones reales de las pruebas, especialmente la apertura de aplicaciones nativas.
+- [x] Hacer commit de los cambios revisados, publicar la rama y crear un PR contra la rama base del repositorio, confirmándola antes de crearlo.
+- [x] Describir en el PR el problema, resultado, validaciones y la base de cobro aún pendiente para los dos precios «desde». Adjuntar el PR a esta tarea y entregar su enlace. No hacer merge.
 
 ## Criterio de finalización
 
@@ -188,3 +188,5 @@ El plan queda cumplido cuando la landing refleja el contenido acordado, los enla
 - Comprobaciones ejecutadas: `git diff --check` pasó; `node --check` sobre el script embebido pasó; la búsqueda no encontró los textos antiguos de promoción, precios ni enlaces directos a WhatsApp Web.
 - Límite pendiente de validación: la política de seguridad del navegador de esta sesión rechazó abrir `file:///.../clients/index.html`. No se inspeccionaron capturas de escritorio o móvil, la consola del navegador ni la apertura real de WhatsApp en teléfono o aplicación de escritorio. No se intentó eludir el bloqueo. La revisión visual y de comportamiento manual debe completarse en un navegador del usuario antes de fusionar.
 - Aún pendiente de validación comercial: base de cobro para «Lavado y planchado desde $15.000» y «Planchado desde $12.000».
+- Commit: `7cc886a` (`feat(clients): update pickup landing details`).
+- PR abierto contra `master`: https://github.com/cbarrosc/bluelayndrydemo/pull/1.
